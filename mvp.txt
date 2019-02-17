@@ -1,0 +1,13 @@
+User Story #1: As a user I want to see my meals separated by date
+User Story #2: As a user I want to see my date entries separated into sections for Breakfast, Lunch, Dinner, and Snacks.
+User Story #3: As a user I want to be able to create a new user account
+User Story #4: As a user I want privileges/access to the main site features to be restricted to only registered users because of my status as a registered user.
+User Story #5: As a user I want my information (journal page, profile, food db) to stay private and only viewable to me because it is sensitive information.
+User Story #6: As a user I want to be able to login to access my user account and personal data.
+User Story #7: As a user I want to be able to add a food item to my custom database so that I can associate it to a meal
+User Story #8: As a user I want to be able to add a meal to my journal page so that I can track meals for that date and beyond.
+User Story #9: As a user, I want to be able to modify a food item in the food database so I can correct or update that food item's attributes.
+User Story #10: As a user, I want to be able to delete a food item.
+User Story #11: As a user, I want to be able to edit individual meals so that I can update that's meal data.
+User Story #12: As a user, I want to be able to remove my account so that I can erase my personal information if I want.
+User Story #13: As a user, I want information on how the app works and welcome text to help me know where I should go next.
