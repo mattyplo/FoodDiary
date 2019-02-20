@@ -38,11 +38,11 @@ CREATE TABLE Meals (
   CONSTRAINT MealsPK PRIMARY KEY(MealID),
   CONSTRAINT MealsFK1 FOREIGN KEY(MealTypeID)
             REFERENCES MealTypes (MealTypeID)
-                ON UPDATE CASCADE
+                ON UPDATE NO ACTION
                 ON DELETE NO ACTION,
   CONSTRAINT MealsFK2 FOREIGN KEY(UserID)
             REFERENCES Users     (UserID)
-                ON UPDATE CASCADE
+                ON UPDATE NO ACTION
                 ON DELETE CASCADE
 ) ;
 
@@ -54,15 +54,14 @@ CREATE TABLE MealsFoods (
   CONSTRAINT MealsFoodsPK  PRIMARY KEY(MealsFoodsID),
   CONSTRAINT MealsFoodsFK1 FOREIGN KEY(MealID)
             REFERENCES Meals          (MealID)
-                ON UPDATE CASCADE
+                ON UPDATE NO ACTION
                 ON DELETE CASCADE,
   CONSTRAINT MealsFoodsFK2 FOREIGN KEY(FoodID)
             REFERENCES Foods          (FoodID)
-                ON UPDATE CASCADE
+                ON UPDATE NO ACTION
                 ON DELETE NO ACTION
 ) ;
 -- ////////////////////CREATE TABLES////////////////////
 
 
 
-    
