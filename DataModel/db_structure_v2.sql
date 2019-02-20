@@ -12,6 +12,23 @@ CREATE TABLE `Foods` (
   CONSTRAINT FoodsPK PRIMARY KEY(FoodID),
   CONSTRAINT FoodsAK UNIQUE(FoodName)
 ) ;
+ 
+CREATE TABLE `Users` (
+  `UserID` int(11) NOT NULL AUTO_INCREMENT,
+  `FirstName` varchar(255) NOT NULL,
+  `LastName` varchar(255) NOT NULL,
+  `UserName` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  CONSTRAINT UsersPK PRIMARY KEY(UserID),
+  CONSTRAINT UsersAK UNIQUE(UserName)
+);
+
+CREATE TABLE `MealTypes` (
+    `MealTypeID` INT(11) NOT NULL AUTO_INCREMENT,
+    `MealType` VARCHAR(255) NOT NULL,
+    CONSTRAINT MealTypesPK PRIMARY KEY (MealTypeID),
+    CONSTRAINT MealTypesAK UNIQUE(MealType)
+);
 
 CREATE TABLE `Meals` (
   `MealID` int(11) NOT NULL AUTO_INCREMENT,
@@ -28,25 +45,6 @@ CREATE TABLE `Meals` (
                 ON UPDATE CASCADE
                 ON DELETE CASCADE
 ) ;
-
-CREATE TABLE `Users` (
-  `UserID` int(11) NOT NULL AUTO_INCREMENT,
-  `FirstName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `UserName` varchar(255) NOT NULL,
-  `Password` varchar(255) NOT NULL,
-  CONSTRAINT UsersPK PRIMARY KEY(UserID),
-  CONSTRAINT UsersAK UNIQUE(UserName)
-);
-
-
-
-CREATE TABLE `MealTypes` (
-    `MealTypeID` INT(11) NOT NULL AUTO_INCREMENT,
-    `MealType` VARCHAR(255) NOT NULL,
-    CONSTRAINT MealTypesPK PRIMARY KEY (MealTypeID),
-    CONSTRAINT MealTypesAK UNIQUE(MealType)
-);
 
 CREATE TABLE `MealsFoods` (
   `MealsFoodsID` int(11) NOT NULL AUTO_INCREMENT,
