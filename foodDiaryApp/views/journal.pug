@@ -4,5 +4,9 @@ block content
   h1= title
   p Welcome to #{title}
   ul 
-    each date in meals
-      li = date
+    each date, index in meals
+      li= index
+        ul= date
+          each thing, index in date
+            li= thing
+            li= date

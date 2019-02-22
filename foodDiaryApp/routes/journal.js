@@ -8,7 +8,7 @@ const util = require('util');
 router.get('/', function(req, res, next) {
   res.render('journal', {
     title:'Journal',
-    meals: meals
+    meals: meals.mealsArr
   });
 });
 

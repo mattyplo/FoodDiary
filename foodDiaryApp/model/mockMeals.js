@@ -40,5 +40,8 @@ var mockMeals = {
     }]
   }
 
+var mealsArr = []
+mealsArr.push(mockMeals.date);
+//console.log(mealsArr);
 //console.log(util.inspect(mockMeals, {showHidden: false, depth: null}));
-exports.mockMeals = mockMeals;
+exports.mealsArr = mealsArr;
