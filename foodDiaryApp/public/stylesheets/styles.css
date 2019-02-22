@@ -1,0 +1,452 @@
+/*CSS Styles*/
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-size:100%;
+    font-family:modern_sans_light;    
+}
+
+
+body.home nav#primary li:nth-child(0), 
+
+header{   
+    width:100%;
+    top:0;
+    left:0;
+    background:rgba(255, 255, 255,.8);
+    overflow: hidden;
+}
+
+nav#primary{
+    height:50px;
+    line-height:50px; 
+    background:rgba(255, 255, 255,.8);
+}
+
+nav#primary li{
+    list-style-type:none;
+    text-align:center;
+    float:left;
+    width:25%;
+}
+
+nav#primary ul {
+    width:100%;
+    margin:0 auto;
+    max-width:1100px;
+}
+
+nav#primary a{
+    text-decoration:none;
+    color:#666;
+}
+
+nav#primary a:hover{
+    background:darkseagreen;
+    display:block;
+    color:#fff;
+}
+
+.active{
+    background:darkseagreen;
+    display:block;
+    color:#fff;
+}
+
+.wrapper{
+    width: 940px;
+    margin: 20px auto 10px auto;
+    background: rgba(238, 238, 238, 0.94);
+    overflow: hidden;
+}
+
+main{
+   /* width:560px; 560px divided by 940px*/
+    width:50%;
+    margin:0 auto;
+    clear:both;
+    padding:15px;
+    float: left;
+}
+
+aside{
+    float: right;
+    width: 50%;
+    background-color: white;
+    text-align: center;
+    clear:both;
+}
+
+div#login {
+    margin: 45% 0;    
+}
+
+div#profile_fill{
+    width:60%;
+    height: 300px;
+    overflow:auto;
+    float: left;
+    margin: 2% 5%;
+}
+
+div#profile_submit{
+    float: right;
+    margin: 290px 5% 5px 0;
+}
+
+input#profile_submit{
+    size: 50;
+}
+
+main ul {
+    list-style-type:none;
+    list-style-position: inside;
+        margin-bottom:10px;
+}
+
+main h1 {
+    text-align:center;
+}
+
+main#food{
+    width: 75%;
+    clear: none;
+}
+
+aside#food{
+    width: 25%;
+    clear: right;
+    padding: 5px;
+    margin-top: 27px;
+}
+
+main#landing{
+    clear: none;
+}
+
+aside#landing{
+    clear: none;
+}
+
+ul#foodasidelist{
+    list-style-type: none;
+}
+
+.foodlist_item{
+    height: 100px;
+    padding: 2px;
+    border-style: solid;
+    border-width: 2px;
+    margin: 1px;
+}
+
+button#addItem,button#editItem, button#deleteItem{
+    padding: 15px 25px;
+    margin: 5px 0;
+}
+
+button#editItem{
+    padding: 15px 25px;
+}
+
+button#favorite{
+    margin: 5px 0 5px 0;
+    height: 123px;
+}
+
+img#favorite{
+    width: 125px;
+    height: 120px;
+}
+
+.foodicon{
+    float: left;
+    margin: 15px 5px 5px 25px;
+    width: 75px;
+    height: 75px;
+}
+
+.foodlist_itemProperty{
+    float: right;
+    width: 75%;
+    margin: 5px 5px;
+    text-align: center;
+}
+
+.foodlist_itemName{
+    
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+iframe{
+    margin-top:10px;
+}
+
+div#foodlist{
+    overflow: scroll;
+    width: 100%;
+    margin: 15px 0 0 0;
+    height: 300px;
+}
+
+div#fooditem{
+    overflow: auto;
+    width: 75%;
+    margin: 15px 0 0 0;
+    height: 300px;
+}
+
+ul#fooditem{
+    line-height: 200%;
+}
+
+table {
+    width:97%;
+    margin:0 auto;
+    margin-top:5px;
+    
+}
+
+
+td {
+    width:33.33%;
+    vertical-align:top;
+    padding:5px;
+    text-align:center;
+}
+
+th {
+    font-size:1.2em;
+    padding:15px;
+}
+
+
+
+footer{
+    height:50px;
+    line-height:50px;
+    clear:both;
+    border-top:1px dotted #666;
+    /* overflow: hidden; */
+}
+
+footer ul {
+    /*padding-left:20px;*/
+    padding-left:10%;
+    clear:both;
+    
+}
+
+footer li{
+    float:left;
+    list-style-type:none;
+    /*margin-right:30px;*/
+    margin-right: 8%;
+    font-size:.875em;
+
+}
+
+footer a {
+    color:black;
+}
+
+.valid{
+    clear:both;
+}
+
+
+hr {
+    border-style:dotted;
+    border-color:#666;
+    margin-top:20px;
+}
+
+/*++++++Typography+++++++++*/
+p {
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+
+
+h1 {
+    margin-bottom:7px;
+    font-size:2.441em;
+    line-height:1.15;
+    color:#666;
+}
+
+.logo{
+    font-size:1.8em;
+    text-align:center;
+    text-decoration:none;
+    margin:8px auto;
+    font-family:honey_bee;
+}
+
+h2 {
+    margin-bottom:7px;
+    font-size:1.953em;
+    line-height:1.15;
+    color:#666;
+}
+
+
+h3{
+    margin-bottom:7px;
+    font-size:1.563em;
+    line-height:1.1;
+    color:#666;
+}
+
+
+h4 {
+    padding-bottom:5px;
+    color:#F1948A;
+    font-size:1.12em;
+    font-size:1em;
+    font-style:italic;
+    
+}
+
+
+iframe {
+    width:auto;
+    border:"0"; 
+}
+
+
+/***********Pop Up Form***********/
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  /* position: fixed; */
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+#existing {
+  display: none;
+}
+@media screen and (max-width:800px) {
+        body #wrapper {
+        /*width:940px;*/
+        width: 95%;    
+    }
+
+    
+    nav#primary ul {
+        /*width: 1100px;*/
+        width:96%;
+    }
+    
+    main ul {
+        list-style-position: inside;
+        margin-bottom:10px;
+        list-style-type: none;
+    }
+    
+    main li {
+        list-style-type: none;
+    }
+    
+    main{
+        /* width:560px; 560px divided by 940px*/   
+        width:56%;
+    }
+
+
+}
+
+@media screen and (max-width:800px){
+    
+    #wrapper {
+        width:95%;
+    }
+    
+    main{
+        /* width:560px; 560px divided by 940px*/   
+        width:56.57%;    
+    }
+    
+
+    
+}
+
+
+/*++++++Typography+++++++++*/   
+@font-face{
+    font-family:"modern_sans_light";
+    src:url("modern_sans_light.otf");
+}
+
+@font-face{
+    font-family:"honey_bee";
+    src:url("honey bee.ttf");
+}
