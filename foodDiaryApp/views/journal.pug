@@ -3,10 +3,25 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  ul
+  each color in ['Red', 'Yellow', 'Blue']
+    li= color
+  ul= "02/11/2019"
+    li= "Breakfast" 
+    ul
+      li= "Eggs"
+      li= "Bacon"
+    li= "Lunch"
+    ul 
+      li= "Peanut Butter and Jelly Sandwich"
+      li= "Coca-cola"
+    li= "Dinner"
+    ul
+      li= "Steak"
+      li= "Green Beans"
+      li= "Roasted Potatoes"
   ul 
-    each date, index in meals
-      li= index
-        ul= date
-          each thing, index in date
-            li= thing
-            li= date
+  each val, index in meals[0]
+    li= index
+      each meal, index2 in val
+        ul= index2
