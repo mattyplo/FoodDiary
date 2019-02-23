@@ -21,3 +21,14 @@ ALTER USER 'yourUserName'@'localhost' IDENTIFIED WITH mysql_native_password BY '
 flush PRIVILEGES;
 "
 in your Workbench and try again.
+
+# Generate Mock Data
+Make sure your schema is already created in Workbench.
+Go to mockgen folder under model directory, use node command run mockgen1.js, then mockgen2.js and finally mockgen3.js sequentially. (There some Async problem that causes the insertion to violate FK constraints if put all in one file, sorry. -- Yun)
+
+# Construct your own MySQL queries
+<temprary>
+You can construct your own query using the following format:
+    > let <'yourConstantName'> = require('your/path/to/model/db_connection');
+    > <'yourConstantName'>(<'yourSQLQuery'>)
+I would add function so all queries (except new user registration and log in / log out) query from the view of the user later on. (Yun)

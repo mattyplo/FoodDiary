@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 let credentials = require('./credentials');
 
-let sqlConnection = function sqlConnection(sql, next) {
+let sqlConnection = function sqlConnection(sql) {
 
     let con = mysql.createConnection(credentials.db);
 
