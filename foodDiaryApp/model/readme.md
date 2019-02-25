@@ -5,7 +5,7 @@ To initialize the database. Log on to MySQL Workbench, open & run db_structure_v
 <p>Go to your foodDiaryApp directory in command line tool, type "npm install mysql".
 After successful install, you want to install dependencies by "npm install".</p>
 <p>Make a new file credentials.json under foodDiaryApp/model directory.</p>
-In the file:
+In the file:<br>
 { "db": { <br>
     "host"     : "localhost",<br>
     "user"     : <"yourUserName">,<br>
