@@ -26,15 +26,9 @@ var getRndDate = function getRndDate(start, end){
     end   = Date.parse(end);
     d  = new Date(start + Math.random()*(start - end));
     
-    var format = function format(x){
-        if(x < 10){
-            x = '0' + x;
-        }
-
-        return x;
-    }
+    function format(x){ return n < 10 ? '0' + n : n}
     
-    return d.getFullYear() + '-' + format(d.getMonth()) + '-' + format(d.getDate());
+    return d.getFullYear() + '-' + format(d.getMonth() + 1) + '-' + format(d.getDate());
 }
 
 //console.log(getRndDate('2019-02-23', '2019-01-01'));

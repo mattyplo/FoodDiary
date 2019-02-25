@@ -1,5 +1,22 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html
+  head
+    title Dietary Food Journal
+    link(rel='stylesheet', href='/stylesheets/indexstyle.css')
+  body
+    div(id='wrapper')
+      header
+        h1 Dietary Food Journal
+      main
+        p The Dietary Food Journal web application provides you with three core functionalities. First, you can add, update or remove food items from the food database. Second you can create a day by day journal documenting what you ate for breakfast, lunch, dinner, and snacks. Third you can review your journalto see what you ate.
+      asside
+        form(action='' method='')
+          legend Login to Food Journal
+          fieldset
+            p
+              label username
+              input(type='username' name='username')
+            p
+              label password
+              input(type='password' name='password')
+            input(type='submit' value='login')
