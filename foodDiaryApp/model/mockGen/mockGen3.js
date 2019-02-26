@@ -22,7 +22,7 @@ var insertMealFood = function insertMealFood(mealFood, err){
 }
 
 i = 0;
-while (i < 5){
+while (i < 150){
     mealFood.mealID = getRnd(1, 50);
     mealFood.foodID  = getRnd(1, 50);
     mealFood.gramsConsumed  = getRnd(1, 1000);

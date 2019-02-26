@@ -2,7 +2,7 @@ let sql = require('../db_connection');
 
 // ====== Mock Food ======
 var foodItem = new Object();
-var inserFoodItem = function inserFoodItem(foodItem, err){
+var insertFoodItem = function insertFoodItem(foodItem, err){
     sql("INSERT INTO FOODS"
         + "(FoodName, GramsPerServing, CaloriesPerGram)"
         + "VALUES ("
@@ -25,7 +25,7 @@ while (i < 50){
     foodItem.caloriesPerGram = getRnd(0, 1000)*100/100;
     foodItem.gramsPerServing = getRnd(1, 250)*100/100;
 
-    inserFoodItem(foodItem);
+    insertFoodItem(foodItem);
     i++;
 }
 
