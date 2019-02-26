@@ -4,16 +4,17 @@ block content
   h1= title
   p Welcome to #{title}
 
-    form(id='food' method='GET')
+    form(action='/' method='GET')
       legend Food Demo
         fieldset
-          p
+          div
             label Food Name
-            input(id='foodName')
-          p
+            input(name='foodName')
+          div
             label Grams Per Serving
-            input(id='gPerServing')
-          p
+            input(name='gPerServing')
+          div
             label Calories Per Gram
-            input(id='cPerGram')
-          input(type='butoon' onclick="foodData()" value='Add/Edit')
+            input(name='cPerGram')
+          input(type='submit' onclick="foodData()" value='Add/Edit')
+    
