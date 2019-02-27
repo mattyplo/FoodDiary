@@ -8,14 +8,14 @@ const util = require('util');
 var sql = "select * from users";
 db(sql, function(err, info) {
 /* GET users listing. */
-console.log(info);
-router.get('/', function(req, res, next) {
-  res.render('journal', {
-    title:'Journal',
-    meals: meals.meals,
-    users: info[0].FirstName
+  console.log(info);
+  router.get('/', function(req, res, next) {
+    res.render('journal', {
+      title:'Journal',
+      meals: meals.meals,
+      users: info[0].FirstName
+    });
   });
-});
 })
    
 module.exports = router;
