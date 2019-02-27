@@ -12,11 +12,11 @@ router.get('/', function(req, res, next) {
    
   });
 
-app.get('/', function(req, res){
+
     let food = req.query;
     console.log(food.foodName);
     fm(food);
-});
+
 
 
 });
