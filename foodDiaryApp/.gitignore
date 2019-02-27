@@ -1,2 +1,5 @@
 # add node_modules to gitignore
 node_modules/
+package-lock.json
+package.json
+credentials.json

@@ -1,0 +1,24 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title
+    link(rel='stylesheet', href='/stylesheets/styles.css')
+  body
+    div.wrapper
+      div#header
+        a(class='logo' href='index.php')
+          h1(class='logo') Food Diary
+          nav#primary
+            ul
+              li 
+                a Home
+              li 
+                a Profile
+              li 
+                a Foods
+              li 
+                a Login
+            
+      block content

@@ -1,0 +1,20 @@
+extends header
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+    form(action='/foods' method='GET')
+      legend Food Demo
+        fieldset
+          div
+            label Food Name
+            input(name='foodName')
+          div
+            label Grams Per Serving
+            input(name='gPerServing')
+          div
+            label Calories Per Gram
+            input(name='cPerGram')
+          input(type='submit' onclick="foodData()" value='Add/Edit')
+    

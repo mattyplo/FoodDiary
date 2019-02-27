@@ -1,0 +1,16 @@
+extends header
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p= users
+  
+  
+  each val, index in meals[0]
+    ul= index
+      each meal, index2 in val
+        li= index2
+        ul
+          each foodItem, index in meal
+            li= foodItem      
+  
