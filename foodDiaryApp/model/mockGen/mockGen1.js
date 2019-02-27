@@ -1,8 +1,11 @@
+
+//please run this on sequence 
+
 let sql = require('../db_connection');
 
 // ====== Mock Food ======
 var foodItem = new Object();
-var insertFoodItem = function insertFoodItem(foodItem, err){
+var insertFoodItem = function insertFoodItem(foodItem){
     sql("INSERT INTO FOODS"
         + "(FoodName, GramsPerServing, CaloriesPerGram)"
         + "VALUES ("
@@ -10,9 +13,8 @@ var insertFoodItem = function insertFoodItem(foodItem, err){
         + "'" + foodItem.caloriesPerGram + "', "
         + "'" + foodItem.gramsPerServing + "'"
         + ")"
+        , function (err, rows){}
     );
-
-    if (err) throw err;
 }
 
 var getRnd = function getRnd(min, max){
@@ -31,7 +33,7 @@ while (i < 50){
 
 // ====== Mock User ======
 var user = new Object();
-var insertUser = function insertUser(user, err){
+var insertUser = function insertUser(user){
     sql("INSERT INTO USERS"
         + "(FirstName, LastName, UserName, Password)"
         + "VALUES ("
@@ -40,9 +42,8 @@ var insertUser = function insertUser(user, err){
         + "'" + user.userName + "', "
         + "'" + user.password + "'"
         + ")"
+        , function (err, rows){}
     );
-
-    if (err) throw err;
 }
 
 i = 0;
@@ -58,15 +59,14 @@ while (i < 5){
 
 // ====== Mock MealType ======
 let mealType = ['breakfast','lunch','dinner','snack'];
-var insertMealType = function insertMealType(meal, err){
+var insertMealType = function insertMealType(meal){
     sql("INSERT INTO MEALTYPES"
         + "(MealType)"
         + "VALUES ("
         + "'" + meal + "'"
         + ")"
+        , function (err, rows){}
     );
-
-    if (err) throw err;
 }
 
 for (i = 0; i < mealType.length; i++){

@@ -1,3 +1,5 @@
+//please run this on sequence 
+
 let sql = require('../db_connection');
 
 var getRnd = function getRnd(min, max){
@@ -8,7 +10,7 @@ var i = 0;
 
 // ====== Mock Meal ======
 var meal = new Object();
-var insertMeal = function insertMeal(meal, err){
+var insertMeal = function insertMeal(meal){
     sql("INSERT INTO MEALS"
         + "(MealDate, MealTypeID, UserID)"
         + "VALUES ("
@@ -16,9 +18,8 @@ var insertMeal = function insertMeal(meal, err){
         + "'" + meal.mealTypeID + "', "
         + "'" + meal.userID + "'"
         + ")"
+        , function (err, rows){}
     );
-
-    if (err) throw err;
 }
 
 var getRndDate = function getRndDate(start, end){
