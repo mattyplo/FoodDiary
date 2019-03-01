@@ -17,9 +17,9 @@ router.get('/', function(req, res, next) {
   });
 
 //router.get('/', function(req, res){
-    let food = req.query;
+   /* let food = req.query;
     console.log(food.foodName);
-    fm(food);
+    fm(food);*/
 //});
 
 
