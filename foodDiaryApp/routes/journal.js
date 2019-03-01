@@ -5,6 +5,12 @@ var db = require('../model/db_connection');
 
 const util = require('util');
 
+router.get('/', function(req, res, next) {
+  res.render('journal', {
+    title:'Journal' 
+  });
+});
+
 /*var sql = "select * from meals";
 db(sql, function(err, queryResults) {
  GET users listing. 
@@ -21,7 +27,7 @@ db(sql, function(err, queryResults) {
 
 
 
-router.get('/', function(req, res, next) {
+/*router.get('/', function(req, res, next) {
   var query = 'SELECT * FROM meals;';
   db(query, function(err, queryResults) {
     if (err) {
@@ -33,6 +39,6 @@ router.get('/', function(req, res, next) {
       users: JSON.stringify(queryResults[0])
     });
   });
-});
+});*/
 
 module.exports = router;

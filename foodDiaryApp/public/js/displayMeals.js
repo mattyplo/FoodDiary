@@ -1,9 +1,19 @@
 $(document).ready(function(){
-  
+  $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
+    $.each(result, (i, field) => {
+      var meal = "<div class='meal'><h3>MealID = " 
+        + field.MealID
+        + "</h3><br />"
+        + "<h3>Date = " + field.MealDate + "</h3><br />"
+        + "<h3>MealTypeID = " + field.MealTypeID + "</h3><br />"
+        + "<h3>UserID = " + field.UserID + "</h3><br /></div>";
+      $("#mealList").append(meal);
+    });
+  });
 });
 
 
- $(document).ready(function(){
+ /*$(document).ready(function(){
       alert();
         $.getJSON("http://localhost:3000/api/v1/film/all", (result)=>{
           $.each(result, (i, field) => {
@@ -27,4 +37,4 @@ $(document).ready(function(){
             }
           });
         });
-      });
+      });*/
