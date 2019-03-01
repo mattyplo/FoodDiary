@@ -19,6 +19,8 @@ db(sql, function(err, queryResults) {
 })
    */
 
+
+
 router.get('/', function(req, res, next) {
   var query = 'SELECT * FROM meals;';
   db(query, function(err, queryResults) {
