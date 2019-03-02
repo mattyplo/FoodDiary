@@ -43,8 +43,11 @@ function foodManipulation(food) {
 
         if (err) throw err;
         
-        var isFoodEmpty = food.foodName === 'undefined' || food.foodName.length == 0
+        var isFoodEmpty = typeof food.foodName === 'undefined' || food.foodName.length == 0
+                        || typeof food.GramsPerServing === 'undefined' || food.GramsPerServing.length == 0
+                        || typeof food.CaloriesPerGram === 'undefined' || food.CaloriesPerGram.length == 0
                         ? true : false;
+        
         if (typeof result === 'undefined' || result.length == 0 && isFoodEmpty === false){
             console.log("new food");
             addFood(food);
@@ -57,16 +60,36 @@ function foodManipulation(food) {
     });
 }
 
-function foodSearch(food) {
+// find food by name, return [{FoodID, FoodName, GramsPerServing,CaloriesPerGram}]
+function foodSearch(food, callback) {
+
     let getFood = "SELECT * FROM foods WHERE FoodName = '"
-                + food.foodName +"';";
+                + food +"';";
     
     sql(getFood, (err, result) => {
 
-        if (err) throw err;
-
-        console.log(result);
-    }) 
+        if (err) callback(err, null);
+        callback(null, result);
+    }); 
 }
 
-module.exports = {man : foodManipulation, search : foodSearch};
+// Delete food
+function foodDelete(food) {
+    foodSearch(food, (err, result) => {
+
+        if (err) throw err;
+
+        var isEmpty = typeof result === 'undefined' || result.length == 0 
+                ? true : false;
+        if (!isEmpty){
+            let deleteFood = "DELETE FROM foods WHERE FoodID = "
+                           + result[0].FoodID;
+            console.log(deleteFood);
+            sql(deleteFood, (err, result) => {});
+        } else {
+            console.log('no such food');
+        }
+    });
+}
+
+module.exports = {man : foodManipulation, search : foodSearch, del : foodDelete};
