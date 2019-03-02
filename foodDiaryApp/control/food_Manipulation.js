@@ -4,6 +4,8 @@ let sql = require('../model/db_connection');
 
 function foodManipulation(food) {
 
+    console.log('input is ' + food)
+
     // Update Food With Given FoodID
     let updateWithID = "UPDATE foods SET "
                     + "GramsPerServing = "
@@ -43,9 +45,10 @@ function foodManipulation(food) {
 
         if (err) throw err;
         
-        var isFoodEmpty = typeof food.foodName === 'undefined' || food.foodName.length == 0
-                        || typeof food.GramsPerServing === 'undefined' || food.GramsPerServing.length == 0
-                        || typeof food.CaloriesPerGram === 'undefined' || food.CaloriesPerGram.length == 0
+        //Not Null constraint
+        var isFoodEmpty = typeof food.foodName == undefined || food.foodName.length == 0
+                        || typeof food.gPerServing == undefined || food.gPerServing.length == 0
+                        || typeof food.cPerGram == undefined || food.cPerGram.length == 0
                         ? true : false;
         
         if (typeof result === 'undefined' || result.length == 0 && isFoodEmpty === false){

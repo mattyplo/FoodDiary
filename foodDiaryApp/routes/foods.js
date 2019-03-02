@@ -13,12 +13,12 @@ router.get('/', function(req, res, next) {
   });
 
   let food = req.query;
-  console.log('query is ' + food);
-  var isEmpty = typeof food === 'undefined' || food.length == 0 
+  console.log('query is ' + food.foodName);
+  var isEmpty = food.foodname == undefined
               ? true : false;
   console.log(isEmpty);
   // console.log('food is ' + food.foodName);
-  if (isEmpty === false) {
+  if (!isEmpty) {
     fm.man(food);
     //test search
     fm.search('banana', (err, result) => {
