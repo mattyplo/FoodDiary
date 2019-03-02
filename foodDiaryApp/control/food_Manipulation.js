@@ -16,7 +16,7 @@ function foodManipulation(food) {
         //updateUsing foodID from db
         sql(updateWithID + foodID, (err, result) => {
             if (err) throw err;
-            console.log(result);
+            // console.log(result);
         }) ;
     }
 
@@ -31,7 +31,7 @@ function foodManipulation(food) {
     function addFood(food) {
         sql(query_addFood, (err, result) => {
             if (err) throw err;
-            console.log(result);
+            // console.log(result);
         })
     }
 
@@ -42,9 +42,14 @@ function foodManipulation(food) {
     sql(findFoodID, (err, result) => {
 
         if (err) throw err;
-        if (typeof result === 'undefined' || result.length == 0){
-            console.log("undefined");
+        
+        var logic = food.foodName === 'undefined' || food.foodName.length == 0
+                        ? true : false;
+        if (typeof result === 'undefined' || result.length == 0 && logic === false){
+            console.log("new food");
             addFood(food);
+        } else if (logic){
+            console.log("empty")
         } else {
             var foodID = result[0].FoodID;
             updateFood(food, foodID);
