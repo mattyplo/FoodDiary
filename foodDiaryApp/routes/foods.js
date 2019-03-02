@@ -14,7 +14,9 @@ router.get('/', function(req, res, next) {
 
   let food = req.query;
   console.log('food is ' + food.foodName);
-  fm(food);
+  fm.man(food);
+  // //test search
+  // console.log(fm.search({foodName: 'banana'}))
 });
 
 // router.get('/', function(req, res, next) {

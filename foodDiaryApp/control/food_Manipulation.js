@@ -43,12 +43,12 @@ function foodManipulation(food) {
 
         if (err) throw err;
         
-        var logic = food.foodName === 'undefined' || food.foodName.length == 0
+        var isFoodEmpty = food.foodName === 'undefined' || food.foodName.length == 0
                         ? true : false;
-        if (typeof result === 'undefined' || result.length == 0 && logic === false){
+        if (typeof result === 'undefined' || result.length == 0 && isFoodEmpty === false){
             console.log("new food");
             addFood(food);
-        } else if (logic){
+        } else if (isFoodEmpty){
             console.log("empty")
         } else {
             var foodID = result[0].FoodID;
@@ -57,4 +57,16 @@ function foodManipulation(food) {
     });
 }
 
-module.exports = foodManipulation;
+function foodSearch(food) {
+    let getFood = "SELECT * FROM foods WHERE FoodName = '"
+                + food.foodName +"';";
+    
+    sql(getFood, (err, result) => {
+
+        if (err) throw err;
+
+        console.log(result);
+    }) 
+}
+
+module.exports = {man : foodManipulation, search : foodSearch};
