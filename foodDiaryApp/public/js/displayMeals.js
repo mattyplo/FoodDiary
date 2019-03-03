@@ -1,8 +1,8 @@
 $(document).ready(function(){
-  $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
+  var meal = $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
       console.log(field.MealID);
-      getMealFoods(field.MealID);
+      console.log(getMealFoods(field.MealID));
       var meal = "<div class='meal'><h3>MealID = " 
         + field.MealID
         + "</h3><br />"
@@ -12,15 +12,25 @@ $(document).ready(function(){
       $("#mealList").append(meal);
     });
     
-   /* $.getJSON("http://localhost:3000/api/v1/meals/mealsFoodsID/1", (result) => {
-      console.log(result);
-    });*/
+    
   });
   
+  
   function getMealFoods (mealID) {
-    $.getJSON("http://localhost:3000/api/v1/meals/mealsFoodsID/" + mealID , (result) => {
-      console.log(result);
-    })
+   
+    var mealData
+    $.ajax({ 
+      url: "http://localhost:3000/api/v1/meals/mealsFoodsID/" + mealID, 
+      dataType: 'json', 
+      async: false, 
+      success: function(json){ 
+        console.log(json);  
+        mealData = json;
+          
+      } 
+   
+  });
+     return mealData;
   }
 
  
