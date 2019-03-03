@@ -23,16 +23,4 @@ router.get('/', function(req, res, next) {
 
 });
 
-// router.get('/', function(req, res, next) {
-
-//   let food = req.query;
-//   fm(food);
-
-// });
-
-
-
-
 module.exports = router;
-
-//set space DEBUG=expressparrot:* npm start
