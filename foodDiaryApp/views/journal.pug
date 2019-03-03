@@ -5,6 +5,16 @@ block content
   p Welcome to #{title}
   div(id="mealList")
   
+  form(action="../api/v1/meals/newMeal" class="form-container" method="post")
+    label(for="date") Date
+    input(type="text" Placeholder="YYYY-MM-DD" name="date" required) 
+    label(for="meal") Meal
+    select(name="mealType")
+      option(value="1") Breakfast
+      option(value="2") Lunch
+      option(value="3") Dinner
+      option(value="4") Snack
+    button(type="submit" class="btn") Submit
   
             
   
