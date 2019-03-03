@@ -102,12 +102,12 @@ function isConstrainted(food, callback) {
 
         if (err) throw err;
 
-        let getCount = "SELECT COUNT(FoodID) FROM mealsfoods WHERE FoodID = "
+        let getCount = "SELECT COUNT(FoodID) AS count FROM mealsfoods WHERE FoodID = "
                      + result[0].FoodID +";";
 
         sql(getCount, (err, count) => {
-
-            var constraint = count === 0 
+            //console.log('count ' + count[0].count);
+            var constraint = count[0].count > 0 
                 ? true : false;
 
             if (err) callback(err, null);

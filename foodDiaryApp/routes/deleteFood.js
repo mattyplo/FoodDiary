@@ -13,26 +13,30 @@ router.get('/', function(req, res, next) {
   });
 
   let food = req.query;
-  console.log('query is ' + food.foodName);
   var isEmpty = food.foodName == undefined
               ? true : false;
-  console.log(isEmpty);
-  // console.log('food is ' + food.foodName);
+  //console.log('Is input empty:' + isEmpty);
   if (!isEmpty) {
-    //fm.man(food);
     //test search
     fm.search(food.foodName, (err, result) => {
       if (err) console.log(err);
       console.log(result);
-    })
-    //test FK constraint check
-    fm.check(food.foodName, (err, isConstraint) => {
-      if (err) console.log(err);
-      console.log(isConstraint);
-    });
-    //test delete
-    fm.del(food.foodName); 
 
+      var isNull = typeof result === 'undefined' || result.length == 0 
+                ? true : false;
+      if(!isNull){
+        //test FK constraint check
+        fm.check(food.foodName, (err, isConstraint) => {
+          if (err) console.log(err);
+          console.log('Prohibit to Delete: ' + isConstraint);
+
+          if (!isConstraint) fm.del(food.foodName)
+          else console.log('Food is referred in meals, cannot be deleted!');
+        });
+      } else {
+        console.log('no such food');
+      }
+    })
   }
 
 });
