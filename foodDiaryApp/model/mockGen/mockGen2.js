@@ -27,7 +27,7 @@ var getRndDate = function getRndDate(start, end){
     end   = Date.parse(end);
     d  = new Date(start + Math.random()*(start - end));
     
-    function format(x){ return n < 10 ? '0' + n : n}
+    function format(x){ return x < 10 ? '0' + x : x}
     
     return d.getFullYear() + '-' + format(d.getMonth() + 1) + '-' + format(d.getDate());
 }
