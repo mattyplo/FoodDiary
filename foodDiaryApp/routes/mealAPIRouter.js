@@ -12,4 +12,14 @@ router.get('/all', function(req, res, next) {
   });
 });
 
+router.post('/newMeal', function(req, res, next) {
+  var query = "INSERT INTO MEALS (MealDate, MealTypeID, UserID) VALUES ('2019-01-22', 2, 1)";
+  db(query, (error, result) => {
+    if (error) {
+      res.status(500).send(error);
+    }
+    console.log("success");
+  })
+})
+
 module.exports = router;
