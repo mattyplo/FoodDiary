@@ -12,7 +12,7 @@ router.get('/all', function(req, res, next) {
   });
 });
 
-
+// returns the FoodIDs when given a mealID as a parameter
 router.get('/mealsFoodsID/:mealID', function(req, res, mnext) {
   var query = "SELECT FoodID FROM MealsFoods WHERE MealID =" + req.params.mealID;
   //console.log(req.params.mealID);

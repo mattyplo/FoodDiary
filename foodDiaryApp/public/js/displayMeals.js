@@ -1,8 +1,9 @@
 $(document).ready(function(){
   var meal = $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
-      console.log(field.MealID);
-      console.log(getMealFoods(field.MealID));
+      //console.log(field.MealID);
+      //console.log(getMealFoods(field.MealID));
+      var me
       var meal = "<div class='meal'><h3>MealID = " 
         + field.MealID
         + "</h3><br />"
@@ -25,12 +26,11 @@ $(document).ready(function(){
       async: false, 
       success: function(json){ 
         console.log(json);  
-        mealData = json;
-          
-      } 
-   
-  });
-     return mealData;
+        mealData = json;  
+      }  
+    });
+    return mealData;
+    
   }
 
  
