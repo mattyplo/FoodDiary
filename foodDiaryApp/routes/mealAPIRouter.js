@@ -12,15 +12,20 @@ router.get('/all', function(req, res, next) {
   });
 });
 
+
 router.post('/newMeal', function(req, res, next) {
-  var query = "INSERT INTO MEALS (MealDate, MealTypeID, UserID) VALUES ('2019-01-22', 2, 1)";
+  var query = "INSERT INTO MEALS (MealDate, MealTypeID, UserID) VALUES ('" + req.body.date + "', " + req.body.mealType + " , 1)";
+  var queryParams = [
+    req.body.date,
+    parseInt(req.body.mealType)
+  ];
   db(query, (error, result) => {
     if (error) {
       res.status(500).send(error);
     }
-    console.log("success");
+    //console.log("success");
     res.render('journal');
-  })
-})
+  });
+});
 
 module.exports = router;
