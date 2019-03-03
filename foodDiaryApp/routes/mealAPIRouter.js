@@ -19,6 +19,7 @@ router.post('/newMeal', function(req, res, next) {
       res.status(500).send(error);
     }
     console.log("success");
+    res.render('journal');
   })
 })
 
