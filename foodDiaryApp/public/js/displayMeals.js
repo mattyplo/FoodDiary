@@ -2,7 +2,7 @@ $(document).ready(function(){
   $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
       console.log(field.MealID);
-      //getMealFoods(field.MealID);
+      getMealFoods(field.MealID);
       var meal = "<div class='meal'><h3>MealID = " 
         + field.MealID
         + "</h3><br />"
@@ -12,16 +12,16 @@ $(document).ready(function(){
       $("#mealList").append(meal);
     });
     
-    $.getJSON("http://localhost:3000/api/v1/meals/mealsFoodsID/1", (result) => {
+   /* $.getJSON("http://localhost:3000/api/v1/meals/mealsFoodsID/1", (result) => {
       console.log(result);
-    });
+    });*/
   });
   
-  /*function getMealFoods (mealID) {
+  function getMealFoods (mealID) {
     $.getJSON("http://localhost:3000/api/v1/meals/mealsFoodsID/" + mealID , (result) => {
       console.log(result);
     })
-  }*/
+  }
 
  
 
