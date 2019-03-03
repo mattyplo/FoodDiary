@@ -1,0 +1,13 @@
+extends header
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+    form(action='/' method='GET')
+      legend Delete Food Demo
+        fieldset
+          div
+            label Food Name
+            input(name='foodName')
+          input(type='submit' onclick="foodData()" value='Delete')

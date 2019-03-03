@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var journalRouter = require('./routes/journal');
 var mealAPIRouter = require('./routes/mealAPIRouter');
 var foodsRouter = require('./routes/foods');
+var deleteFoodRouter = require('./routes/deleteFood');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/journal', journalRouter);
 app.use('/foods', foodsRouter);
+app.use('/foods/del', deleteFoodRouter);
 app.use('/api/v1/meals', mealAPIRouter);
 
 // catch 404 and forward to error handler

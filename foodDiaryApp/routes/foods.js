@@ -13,26 +13,12 @@ router.get('/', function(req, res, next) {
   });
 
   let food = req.query;
-  console.log('query is ' + food.foodName);
+  // console.log('query is ' + food.foodName);
   var isEmpty = food.foodName == undefined
               ? true : false;
-  console.log(isEmpty);
-  // console.log('food is ' + food.foodName);
+  // console.log(isEmpty);
   if (!isEmpty) {
-    //fm.man(food);
-    //test search
-    fm.search(food.foodName, (err, result) => {
-      if (err) console.log(err);
-      console.log(result);
-    })
-    //test FK constraint check
-    fm.check(food.foodName, (err, isConstraint) => {
-      if (err) console.log(err);
-      console.log(isConstraint);
-    });
-    //test delete
-    fm.del(food.foodName); 
-
+    fm.man(food);
   }
 
 });
