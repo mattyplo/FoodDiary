@@ -95,4 +95,42 @@ function foodDelete(food) {
     });
 }
 
-module.exports = {man : foodManipulation, search : foodSearch, del : foodDelete};
+// Check if the food has already been referred on meals
+function isConstrainted(food, callback) {
+        
+    foodSearch(food, (err, result) => {
+
+        if (err) throw err;
+
+        let getCount = "SELECT COUNT(FoodID) FROM mealsfoods WHERE FoodID = "
+                     + result[0].FoodID +";";
+
+        sql(getCount, (err, count) => {
+
+            var constraint = count === 0 
+                ? true : false;
+
+            if (err) callback(err, null);
+            callback(null, constraint);
+        }) ;
+    });
+}
+
+// fuzzy search for food
+function fuzzySearch(food, callback) {
+
+    let getFood = "SELECT * FROM foods WHERE FoodName LIKE '%"
+                + food +"%';";
+    
+    sql(getFood, (err, result) => {
+
+        if (err) callback(err, null);
+        callback(null, result);
+    }); 
+}
+
+
+module.exports = 
+    {man : foodManipulation, search : foodSearch, del : foodDelete
+        , check : isConstrainted, fuzzySearch : fuzzySearch
+    };

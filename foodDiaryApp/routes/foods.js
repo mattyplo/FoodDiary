@@ -14,19 +14,25 @@ router.get('/', function(req, res, next) {
 
   let food = req.query;
   console.log('query is ' + food.foodName);
-  var isEmpty = food.foodname == undefined
+  var isEmpty = food.foodName == undefined
               ? true : false;
   console.log(isEmpty);
   // console.log('food is ' + food.foodName);
   if (!isEmpty) {
-    fm.man(food);
+    //fm.man(food);
     //test search
-    fm.search('banana', (err, result) => {
+    fm.search(food.foodName, (err, result) => {
       if (err) console.log(err);
       console.log(result);
     })
+    //test FK constraint check
+    fm.check(food.foodName, (err, isConstraint) => {
+      if (err) console.log(err);
+      console.log(isConstraint);
+    });
     //test delete
-    fm.del('banana');
+    fm.del(food.foodName); 
+
   }
 
 });
