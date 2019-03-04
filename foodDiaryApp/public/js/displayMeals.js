@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var meals = [];
+  var meals = {};
   
   $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
@@ -7,25 +7,25 @@ $(document).ready(function(){
       //console.log(getMealFoods(field.MealID));
       var mealDate = field.MealDate;
       var mealFoods = [];
+      var foods = []
       var foodName;
       //console.log(mealFoods);
       // string time from Date
       var tIndex = mealDate.indexOf('T');
       var mealDate = mealDate.substring(0, tIndex);
-      meals.push(mealDate);
+      //meals.push(mealDate);
       mealFoods = getMealFoods(field.MealID);
+      meals[mealDate];
       if (mealFoods.length > 0) {
         $.each(mealFoods, (i, foodId) => {
-               foodName = getFoodName(foodId);
-          mealFoods.push(foodName);
-               })
-        //console.log(mealFoods);
-        //foodName = getFoodName(mealFoods);
-        //console.log(foodName);
+          foodName = getFoodName(foodId);
+          foods.push(foodName);
+        });  
+        meals[mealDate] = foods;
       }
-      //console.log(mealFoods);
-      //foodName = getFoodName(mealFoods);
-      //console.log(foodName);
+
+      //console.log(meals);
+      
       var meal = "<div class='meal'><h3>MealID = " 
         + field.MealID
         + "</h3><br />"
@@ -75,44 +75,9 @@ $(document).ready(function(){
       foodIds.push(field.FoodID);
     })
     
-    //console.log(foodIds);
     return foodIds;
     
   }
 
- 
-
-
-
-/*$(document).ready(function(){
-  $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
-    $.each(result, (i, field) => {
-      var meal = "<div class='meal'><h3>MealID = " 
-        + field.MealID
-        + "</h3><br />"
-        + "<h3>Date = " + field.MealDate + "</h3><br />"
-        + "<h3>MealTypeID = " + field.MealTypeID + "</h3><br />"
-        + "<h3>UserID = " + field.UserID + "</h3><br /></div>";
-      $("#mealList").append(meal);
-    });
-  });*/
-  
-  /*var mealData = $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
-    return result;
-  });*/
-  
- 
-  /*var mealData = $.ajax({ 
-      url: "http://localhost:3000/api/v1/meals/all", 
-      dataType: 'json', 
-      async: false, 
-      success: function(json){ 
-        console.log(json);  
-        return json;
-          
-      } 
-  });
-  
-  console.log(mealData);*/
 });
 
