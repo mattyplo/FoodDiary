@@ -3,14 +3,11 @@ $(document).ready(function(){
   
   $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
-      //console.log(field.MealID);
-      //console.log(getMealFoods(field.MealID));
       var mealDate = field.MealDate;
       var mealFoods = [];
       var foods = []
       var foodName;
-      //console.log(mealFoods);
-      // string time from Date
+      var mealType = getMealType(field.MealTypeID);
       var tIndex = mealDate.indexOf('T');
       var mealDate = mealDate.substring(0, tIndex);
       //meals.push(mealDate);
@@ -37,6 +34,22 @@ $(document).ready(function(){
     
     console.log(meals);
   });
+  
+  function getMealType (typeID) {
+    // Retrieve the MealType given the MealTypeID
+    var mealType
+    $.ajax({ 
+      url: "http://localhost:3000/api/v1/meals/mealType/" + typeID, 
+      dataType: 'json', 
+      async: false, 
+      success: function(json){ 
+        //console.log(json[0].FoodName);  
+        mealType = json[0].MealType;  
+      }
+    });
+    console.log(mealType);
+    return mealType;
+  }
   
   function getFoodName (foodID) {
     // Retrieve the FoodName given the foodID
