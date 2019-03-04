@@ -12,8 +12,8 @@ router.get('/all', function(req, res, next) {
   });
 });
 
-
-router.get('/mealsFoodsID/:mealID', function(req, res, mnext) {
+// returns the FoodIDs when given a mealID as a parameter
+router.get('/mealsFoodsID/:mealID', function(req, res, next) {
   var query = "SELECT FoodID FROM MealsFoods WHERE MealID =" + req.params.mealID;
   //console.log(req.params.mealID);
   db(query, (error, result, fields) => {
@@ -24,6 +24,17 @@ router.get('/mealsFoodsID/:mealID', function(req, res, mnext) {
   })
 })
 
+router.get('/foodName/:foodID', function(req, res, next) {
+  var query = "SELECT FoodName FROM Foods WHERE FoodID =" + req.params.foodID;
+  
+  db(query, (error, result, fields) => {
+    if(error) {
+      res.status(500).send(error);
+    }
+    console.log(result);
+    res.send(result);
+  })
+})
 
 router.post('/newMeal', function(req, res, next) {
   var query = "INSERT INTO MEALS (MealDate, MealTypeID, UserID) VALUES ('" + req.body.date + "', " + req.body.mealType + " , 1)";
