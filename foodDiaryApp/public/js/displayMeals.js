@@ -16,7 +16,8 @@ $(document).ready(function(){
       mealFoods = getMealFoods(field.MealID);
       if (mealFoods.length > 0) {
         $.each(mealFoods, (i, foodId) => {
-               console.log(foodId);
+               foodName = getFoodName(foodId);
+          mealFoods.push(foodName);
                })
         //console.log(mealFoods);
         //foodName = getFoodName(mealFoods);
@@ -38,20 +39,20 @@ $(document).ready(function(){
   });
   
   function getFoodName (foodID) {
-    
+    // Retrieve the FoodName given the foodID
     var foodName
     $.ajax({ 
       url: "http://localhost:3000/api/v1/meals/foodName/" + foodID, 
       dataType: 'json', 
       async: false, 
       success: function(json){ 
-        //console.log(json);  
-        foodName = json;  
+        //console.log(json[0].FoodName);  
+        foodName = json[0].FoodName;  
       }  
     });
     
     //console.log(foodNameIds);
-    return foodNameIds;
+    return foodName;
     
   }
   
