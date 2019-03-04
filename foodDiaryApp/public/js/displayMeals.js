@@ -7,7 +7,7 @@ $(document).ready(function(){
       //console.log(getMealFoods(field.MealID));
       var mealDate = field.MealDate;
       var mealFoods = [];
-      console.log(mealFoods);
+      //console.log(mealFoods);
       // string time from Date
       var tIndex = mealDate.indexOf('T');
       var mealDate = mealDate.substring(0, tIndex);
