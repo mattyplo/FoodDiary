@@ -1,9 +1,19 @@
 $(document).ready(function(){
-  var meal = $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
+  var meals = [];
+  
+  $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
       //console.log(field.MealID);
       //console.log(getMealFoods(field.MealID));
-      var me
+      var mealDate = field.MealDate;
+      var mealFoods = [];
+      console.log(mealFoods);
+      // string time from Date
+      var tIndex = mealDate.indexOf('T');
+      var mealDate = mealDate.substring(0, tIndex);
+      meals.push(mealDate);
+      mealFoods = getMealFoods(field.MealID);
+      
       var meal = "<div class='meal'><h3>MealID = " 
         + field.MealID
         + "</h3><br />"
@@ -13,10 +23,10 @@ $(document).ready(function(){
       $("#mealList").append(meal);
     });
     
-    
+    console.log(meals);
   });
   
-  
+  // returns FoodIDs in particular meal given a mealID
   function getMealFoods (mealID) {
    
     var mealData
