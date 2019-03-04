@@ -1,24 +1,30 @@
 $(document).ready(function(){
   var meals = {};
-  
   $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
+      // capture meal date and format
       var mealDate = field.MealDate;
+      var tIndex = mealDate.indexOf('T');
+      var mealDate = mealDate.substring(0, tIndex);
+      
       var mealFoods = [];
       var foods = []
       var foodName;
       var mealType = getMealType(field.MealTypeID);
-      var tIndex = mealDate.indexOf('T');
-      var mealDate = mealDate.substring(0, tIndex);
       //meals.push(mealDate);
       mealFoods = getMealFoods(field.MealID);
-      meals[mealDate];
+      meals[mealDate] = {};
+      var mealTypes = {};
+      mealTypes[mealType];
+      
       if (mealFoods.length > 0) {
         $.each(mealFoods, (i, foodId) => {
           foodName = getFoodName(foodId);
           foods.push(foodName);
         });  
-        meals[mealDate] = foods;
+        console.log(foods);
+        mealTypes[mealType] = foods;
+        meals[mealDate] = mealTypes;
       }
 
       //console.log(meals);
@@ -47,7 +53,6 @@ $(document).ready(function(){
         mealType = json[0].MealType;  
       }
     });
-    console.log(mealType);
     return mealType;
   }
   
