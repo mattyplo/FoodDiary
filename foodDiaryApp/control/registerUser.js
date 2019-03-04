@@ -1,4 +1,4 @@
-let sql = require('..model/db_connection');
+let sql = require('../model/db_connection');
 
 function registerUser(user) {
   
