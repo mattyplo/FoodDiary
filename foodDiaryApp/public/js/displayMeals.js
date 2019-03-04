@@ -1,30 +1,39 @@
 $(document).ready(function(){
   var meals = {};
-  
   $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
-      //console.log(field.MealID);
-      //console.log(getMealFoods(field.MealID));
+      // capture meal date and format
       var mealDate = field.MealDate;
+      var tIndex = mealDate.indexOf('T');
+      var mealDate = mealDate.substring(0, tIndex);
+      
       var mealFoods = [];
       var foods = []
       var foodName;
-      //console.log(mealFoods);
-      // string time from Date
-      var tIndex = mealDate.indexOf('T');
-      var mealDate = mealDate.substring(0, tIndex);
+      var mealType = getMealType(field.MealTypeID);
       //meals.push(mealDate);
       mealFoods = getMealFoods(field.MealID);
-      meals[mealDate];
+      if(meals[mealDate]) {
+        console.log('true');
+      } else {
+        meals[mealDate] = [];
+        console.log('false');
+      }
+      //meals[mealDate];
+      var mealTypes = {};
+      mealTypes[mealType];
+      
       if (mealFoods.length > 0) {
         $.each(mealFoods, (i, foodId) => {
           foodName = getFoodName(foodId);
           foods.push(foodName);
         });  
-        meals[mealDate] = foods;
+        mealTypes[mealType] = foods;
+      
+        meals[mealDate].push(mealTypes);
       }
 
-      //console.log(meals);
+      //console.log(JSON.stringify(meals));
       
       var meal = "<div class='meal'><h3>MealID = " 
         + field.MealID
@@ -35,8 +44,23 @@ $(document).ready(function(){
       $("#mealList").append(meal);
     });
     
-    console.log(meals);
+    console.log(JSON.stringify(meals));
   });
+  
+  function getMealType (typeID) {
+    // Retrieve the MealType given the MealTypeID
+    var mealType
+    $.ajax({ 
+      url: "http://localhost:3000/api/v1/meals/mealType/" + typeID, 
+      dataType: 'json', 
+      async: false, 
+      success: function(json){ 
+        //console.log(json[0].FoodName);  
+        mealType = json[0].MealType;  
+      }
+    });
+    return mealType;
+  }
   
   function getFoodName (foodID) {
     // Retrieve the FoodName given the foodID

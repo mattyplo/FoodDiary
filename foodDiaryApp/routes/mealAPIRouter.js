@@ -24,6 +24,16 @@ router.get('/mealsFoodsID/:mealID', function(req, res, next) {
   })
 })
 
+router.get('/mealType/:typeID', function(req, res, next) {
+  var query = "SELECT MealType FROM MealTypes WHERE MealTypeID =" + req.params.typeID;
+  db(query, (error, result, fields) => {
+    if(error) {
+      res.status(500).send(error);
+    }
+    res.send(result);
+  })
+})
+
 router.get('/foodName/:foodID', function(req, res, next) {
   var query = "SELECT FoodName FROM Foods WHERE FoodID =" + req.params.foodID;
   
@@ -31,7 +41,7 @@ router.get('/foodName/:foodID', function(req, res, next) {
     if(error) {
       res.status(500).send(error);
     }
-    console.log(result);
+    //console.log(result);
     res.send(result);
   })
 })
