@@ -13,7 +13,13 @@ $(document).ready(function(){
       var mealType = getMealType(field.MealTypeID);
       //meals.push(mealDate);
       mealFoods = getMealFoods(field.MealID);
-      meals[mealDate] = {};
+      if(meals[mealDate]) {
+        console.log('true');
+      } else {
+        meals[mealDate] = [];
+        console.log('false');
+      }
+      //meals[mealDate];
       var mealTypes = {};
       mealTypes[mealType];
       
@@ -22,12 +28,12 @@ $(document).ready(function(){
           foodName = getFoodName(foodId);
           foods.push(foodName);
         });  
-        console.log(foods);
         mealTypes[mealType] = foods;
-        meals[mealDate] = mealTypes;
+      
+        meals[mealDate].push(mealTypes);
       }
 
-      //console.log(meals);
+      //console.log(JSON.stringify(meals));
       
       var meal = "<div class='meal'><h3>MealID = " 
         + field.MealID
@@ -38,7 +44,7 @@ $(document).ready(function(){
       $("#mealList").append(meal);
     });
     
-    console.log(meals);
+    console.log(JSON.stringify(meals));
   });
   
   function getMealType (typeID) {
