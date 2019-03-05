@@ -5,17 +5,40 @@ var db = require('../model/db_connection');
 
 const util = require('util');
 
-var sql = "select * from users";
-db(sql, function(err, info) {
-/* GET users listing. */
-  console.log(info);
+router.get('/', function(req, res, next) {
+  res.render('journal', {
+    title:'Journal' 
+  });
+});
+
+/*var sql = "select * from meals";
+db(sql, function(err, queryResults) {
+ GET users listing. 
+  console.log(queryResults);
   router.get('/', function(req, res, next) {
     res.render('journal', {
       title:'Journal',
       meals: meals.meals,
-      users: info[0].FirstName
+      users: JSON.stringify(queryResults[0])
     });
   });
 })
-   
+   */
+
+
+
+/*router.get('/', function(req, res, next) {
+  var query = 'SELECT * FROM meals;';
+  db(query, function(err, queryResults) {
+    if (err) {
+      res.status(500).send(error);
+    }
+    res.render('journal', {
+      title:'Journal',
+      meals: meals.meals,
+      users: JSON.stringify(queryResults[0])
+    });
+  });
+});*/
+
 module.exports = router;
