@@ -1,6 +1,6 @@
 $(document).ready(function(){
   var meals = {};
-  $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
+  $.getJSON("/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
       // capture meal date and format
       var mealDate = field.MealDate;
