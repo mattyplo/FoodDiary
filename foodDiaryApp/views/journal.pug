@@ -2,22 +2,81 @@ extends header
 
 block append scripts
   script(src="/js/displayMeals.js")
-
-block content
-  h1= title
-  p Welcome to #{title}
-  div(id="mealList")
+  script(src="/js/addMeal.js")
   
-  form(action="../api/v1/meals/newMeal" class="form-container" method="post")
-    label(for="date") Date
-    input(type="text" Placeholder="YYYY-MM-DD" name="date" required) 
-    label(for="meal") Meal
-    select(name="mealType")
-      option(value="1") Breakfast
-      option(value="2") Lunch
-      option(value="3") Dinner
-      option(value="4") Snack
-    button(type="submit" class="btn") Submit
+block content
+  body
+    div#wrapper
+      h1= title
+      p Welcome to #{title}
+      main  
+      
+        button(id="addMeal") Add Meal
+        div.form-popup#myForm
+          form.form-container(action="../api/v1/meals/newMeal" method="post")
+            h1 Add Meal
+            label(for="date")
+              b Date
+            input(type="text" placeholder="YYYY/MM/DD" name="date" required)
+            label(for="meal")
+              b Meal
+            select(name="meal")
+              option(value="1") Breakfast
+              option(value="2") Lunch
+              option(value="3") Dinner
+              option(value="4") Snack
+            br
+            br
+            
+            label new
+            input(type="radio" name="newOrExisting" value="new" checked) 
+            label existing
+            input(type="radio" name="newOrExisting" value="existing") 
+            
+            
+            div#new
+              br
+              label(for="foodItem")
+                b Food Name
+              input(type="text" name="foodName")
+              
+            div#existing
+              br
+              select(name="FoodID")
+              br
+              br
+              
+            ul
+              li
+                label(for="caloriesPerGram")
+                  b Calories Per Gram
+                input(type="number" name="caloriesPerGram" step="0.01")
+              li
+                label(for="gramsPerServing")
+                  b Grams Per Serving
+                input(type="number" name="gramsPerServing" step="0.01")
+              li
+                label(for="gramsConsumed")
+                  b Grams Consumed
+                input(type="number" name="gramsConsumed")
+                
+            br
+            br
+            button.btn(type="submit" class="btn") Add Meal
+            button.btn.cancel#closeFormButton(type="button") Cancel Add Meal
+                
+        div#mealList
+
+        form(action="../api/v1/meals/newMeal" class="form-container" method="post")
+          label(for="date") Date
+          input(type="text" Placeholder="YYYY-MM-DD" name="date" required) 
+          label(for="meal") Meal
+          select(name="mealType")
+            option(value="1") Breakfast
+            option(value="2") Lunch
+            option(value="3") Dinner
+            option(value="4") Snack
+          button(type="submit" class="btn") Submit
   
             
   

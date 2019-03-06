@@ -34,14 +34,14 @@ $(document).ready(function(){
 
       //console.log(JSON.stringify(meals));
       
-      var meal = "<div class='meal'><h2>" 
+      var meal = "<div class='meal'><h3>" 
         + mealDate
-        + "</h2><br />"
-        + "<h3>" + mealType + "</h3><br />" + "<ul>";
+        + "</h3><br />"
+        + "<h4>" + mealType + "</h4><br />" + "<ul class='ulMeal'>";
       for (var i = 0; i < foods.length; i ++) {
-        meal += "<li>" + foods[i];
+        meal += "<li class='liMeal'>" + foods[i];
       }
-      meal += "</ul>"
+      meal += "</ul></div>"
       $("#mealList").append(meal);
     });
     
