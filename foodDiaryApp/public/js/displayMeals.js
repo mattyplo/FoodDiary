@@ -6,7 +6,6 @@ $(document).ready(function(){
       var mealDate = field.MealDate;
       var tIndex = mealDate.indexOf('T');
       var mealDate = mealDate.substring(0, tIndex);
-      
       var mealFoods = [];
       var foods = []
       var foodName;
@@ -35,12 +34,14 @@ $(document).ready(function(){
 
       //console.log(JSON.stringify(meals));
       
-      var meal = "<div class='meal'><h3>MealID = " 
-        + field.MealID
-        + "</h3><br />"
-        + "<h3>Date = " + field.MealDate + "</h3><br />"
-        + "<h3>MealTypeID = " + field.MealTypeID + "</h3><br />"
-        + "<h3>UserID = " + field.UserID + "</h3><br /></div>";
+      var meal = "<div class='meal'><h2>" 
+        + mealDate
+        + "</h2><br />"
+        + "<h3>" + mealType + "</h3><br />" + "<ul>";
+      for (var i = 0; i < foods.length; i ++) {
+        meal += "<li>" + foods[i];
+      }
+      meal += "</ul>"
       $("#mealList").append(meal);
     });
     
@@ -51,7 +52,7 @@ $(document).ready(function(){
     // Retrieve the MealType given the MealTypeID
     var mealType
     $.ajax({ 
-      url: "http://localhost:3000/api/v1/meals/mealType/" + typeID, 
+      url: "/api/v1/meals/mealType/" + typeID, 
       dataType: 'json', 
       async: false, 
       success: function(json){ 
@@ -66,7 +67,7 @@ $(document).ready(function(){
     // Retrieve the FoodName given the foodID
     var foodName
     $.ajax({ 
-      url: "http://localhost:3000/api/v1/meals/foodName/" + foodID, 
+      url: "/api/v1/meals/foodName/" + foodID, 
       dataType: 'json', 
       async: false, 
       success: function(json){ 
@@ -85,7 +86,7 @@ $(document).ready(function(){
    
     var mealData = []
     $.ajax({ 
-      url: "http://localhost:3000/api/v1/meals/mealsFoodsID/" + mealID, 
+      url: "/api/v1/meals/mealsFoodsID/" + mealID, 
       dataType: 'json', 
       async: false, 
       success: function(json){ 
