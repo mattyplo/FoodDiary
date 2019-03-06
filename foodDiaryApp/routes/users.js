@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
 
-router.post('/addUser', function(req, res, next){
+router.post('/', function(req, res, next){
     var query = "INSERT INTO users" 
             + "(FirstName, LastName, UserName, `Password`)"
             + "VALUES (?, ?, ?, ?);"
@@ -17,11 +17,14 @@ router.post('/addUser', function(req, res, next){
     db.query(query, queryParams, (error, result, fields)=> {
         if (error){
             res.status(500).send(error);
+        } else {
+        res.render('profile', {
+    title:'Profile' 
+  });
         }
-        res.status(201).send('record added');
     });
-    
-    
+        
+        
 });
 
 module.exports = router;
