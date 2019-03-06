@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title Dietary Food Journal
+    link(rel='stylesheet', href='/stylesheets/indexstyle.css')
+  body
+    div(id='wrapper')
+      header
+        h1 Register
+        form(action='users/addUser' method='POST')
+          div.form-group
+            label(for='firstname') First Name:
+            input#name.form-control(type='text', placeholder='Joe', name ='firstname')
+          div.form-group
+            label(for='lastname') Last Name:
+            input#name.form-control(type='text', placeholder='Schmo', name ='lastname')
+          div.form-group
+            label(for='username') Username:
+            input#username.form-control(type='username', placeholder='User' name='username')
+          div.form-group
+            label(for='pw') Password:
+            input#pw.form-control(type='password' name='password')
+          div.form-group
+            label(for='pw2') Confirm Password:
+            input#pw2.form-control(type='password' name='confirmPassword')
+          button.btn.btn-primary(type='submit') Sign up
