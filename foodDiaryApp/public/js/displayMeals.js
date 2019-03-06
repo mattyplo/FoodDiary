@@ -37,10 +37,11 @@ $(document).ready(function(){
       var meal = "<div class='meal'><h2>" 
         + mealDate
         + "</h2><br />"
-        + "<h3>" + mealType + "</h3><br />";
+        + "<h3>" + mealType + "</h3><br />" + "<ul>";
       for (var i = 0; i < foods.length; i ++) {
-        
+        meal += "<li>" + foods[i];
       }
+      meal += "</ul>"
       $("#mealList").append(meal);
     });
     
