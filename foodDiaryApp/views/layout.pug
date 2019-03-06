@@ -1,8 +1,28 @@
 doctype html
-html
+html(lang='en')
   head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title= title
     link(rel='stylesheet', href='/stylesheets/styles.css')
-   
+    block scripts
+      script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+      script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+      
   body
-    block content
+    div.wrapper
+      div#header
+        a(class='logo' href='/journal')
+          h1(class='logo') Food Diary
+          nav#primary
+            ul
+              li 
+                a(href='/journal') Home
+              li 
+                a(href='/journal') Profile
+              li 
+                a(href='/foods') Foods
+              li 
+                a(href='/') Login
+            
+      block content
