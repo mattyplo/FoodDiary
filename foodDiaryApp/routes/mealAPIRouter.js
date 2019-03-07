@@ -49,13 +49,26 @@ router.get('/foodName/:foodID', function(req, res, next) {
 router.post('/newMeal', function(req, res, next) {
   var query = "INSERT INTO MEALS (MealDate, MealTypeID, UserID) VALUES ('" + req.body.date + "', " + req.body.mealType + " , 1)";
   
+  
   db(query, (error, result) => {
     if (error) {
       res.status(500).send(error);
     }
-    console.log(result);
+    //console.log(result);
+    addFoodFromMeal(result.insertId);
     res.render('journal');
   });
+  
+  function addFoodFromMeal (mealID)  {
+    //console.log("hey");
+    var foodQuery = "INSERT INTO Foods (FoodName, GramsPerServing, CaloriesPerGram) VALUES ('" + req.body.foodName + "', " + req.body.gramsPerServing + ", " + req.body.caloriesPerGram + ");";
+    db(foodQuery, (error, result) => {
+      if (error) {
+        res.status(500).send(error);
+      }
+      console.log(result);
+    });
+  }
 });
 
 module.exports = router;
