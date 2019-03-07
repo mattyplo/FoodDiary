@@ -1,23 +1,6 @@
 $(document).ready(function(){
   var meals = {};
- /* 
-  var promise = new Promise(function(resolve, reject) {
-    var data = getMealData(1);
-    resolve(data);
-  })
-  
-  promise.then(function(value) {
-    console.log(JSON.stringify(value));
-  })
-  function buildJournalEntries() {
-    
-  }*/
-  
-  //getMealData(1);
-  
-  
-  
-  
+ 
   $.getJSON("/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
       // capture meal date and format
@@ -47,20 +30,9 @@ $(document).ready(function(){
         meals[mealDate].push(mealTypes);
       }
 
-      //console.log(JSON.stringify(meals));
-      
-      /*var meal = "<div class='meal'><h3>" 
-        + mealDate
-        + "</h3><br />"
-        + "<h4>" + mealType + "</h4><br />" + "<ul class='ulMeal'>";
-      for (var i = 0; i < foods.length; i ++) {
-        meal += "<li class='liMeal'>" + foods[i];
-      }
-      meal += "</ul></div>"
-      $("#mealList").append(meal);*/
     });
     outputMealData(meals);
-    //console.log(JSON.stringify(meals));
+   
   });
   
   function outputMealData(mealData) {
