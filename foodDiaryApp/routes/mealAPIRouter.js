@@ -12,6 +12,17 @@ router.get('/all', function(req, res, next) {
   });
 });
 
+// will grab all necessary data from the db to populate journal page
+router.get('/mealInfo/:userID', function(req, res, next) {
+  var query = "SELECT MealDate, Meals.MealID, MealType, FoodName FROM Meals JOIN MealsFoods ON MealsFoods.MealID = Meals.MealID JOIN Foods ON Foods.FoodID = MealsFoods.FoodID JOIN MealTypes ON MealTypes.MealTypeID = Meals.MealTypeID WHERE UserID = 1 ORDER BY MealDate Desc;";
+  db(query, (error, result, fields) => {
+    if (error) {
+      res.status(500).send(error);
+    }
+    res.send(result);
+  });
+})
+
 // returns the FoodIDs when given a mealID as a parameter
 router.get('/mealsFoodsID/:mealID', function(req, res, next) {
   var query = "SELECT FoodID FROM MealsFoods WHERE MealID =" + req.params.mealID;

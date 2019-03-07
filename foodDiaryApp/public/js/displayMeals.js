@@ -1,5 +1,6 @@
 $(document).ready(function(){
   var meals = {};
+  getMealData(1);
   $.getJSON("/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
       // capture meal date and format
@@ -47,6 +48,20 @@ $(document).ready(function(){
     
     console.log(JSON.stringify(meals));
   });
+  
+  function getMealData (userID) {
+    var mealData
+    $.ajax({
+      url: "/api/v1/meals/mealInfo/" + 1,
+      dataType: 'json', 
+      async: false, 
+      success: function(json){ 
+        console.log(json); 
+      }
+    });
+    //return mealType;
+  }
+  
   
   function getMealType (typeID) {
     // Retrieve the MealType given the MealTypeID
