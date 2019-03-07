@@ -1,5 +1,6 @@
 $(document).ready(function(){
   var meals = {};
+  getMealData(1);
   $.getJSON("/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
       // capture meal date and format
@@ -34,19 +35,33 @@ $(document).ready(function(){
 
       //console.log(JSON.stringify(meals));
       
-      var meal = "<div class='meal'><h2>" 
+      var meal = "<div class='meal'><h3>" 
         + mealDate
-        + "</h2><br />"
-        + "<h3>" + mealType + "</h3><br />" + "<ul>";
+        + "</h3><br />"
+        + "<h4>" + mealType + "</h4><br />" + "<ul class='ulMeal'>";
       for (var i = 0; i < foods.length; i ++) {
-        meal += "<li>" + foods[i];
+        meal += "<li class='liMeal'>" + foods[i];
       }
-      meal += "</ul>"
+      meal += "</ul></div>"
       $("#mealList").append(meal);
     });
     
     console.log(JSON.stringify(meals));
   });
+  
+  function getMealData (userID) {
+    var mealData
+    $.ajax({
+      url: "/api/v1/meals/mealInfo/" + 1,
+      dataType: 'json', 
+      async: false, 
+      success: function(json){ 
+        console.log(json); 
+      }
+    });
+    //return mealType;
+  }
+  
   
   function getMealType (typeID) {
     // Retrieve the MealType given the MealTypeID

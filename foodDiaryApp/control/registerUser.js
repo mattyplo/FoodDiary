@@ -1,31 +1,29 @@
-let sql = require('../model/db_connection');
+var express = require('express');
+var router = express.Router();
+var db = require('../model/db_connection');
 
-function registerUser(user) {
-  
-  // Add new user
-  let query_insertNewUser = "INSERT INTO users" 
-            + "(UserID, FirstName, LastName, UserName, `Password`)"
-            + "VALUES (DEFAULT," + `'` + user.first_name + "', " + "'" + user.last_name + "', " 
-            + "'" + user.username + "', " 
-            + "'" + user.password + "');";
-      
-  function addUser(user){
-      sql(query_insertNewUser, (err, result)=> {
-          if (err) throw err;
-      });
-  }
+router.post('/addUser', function(req, res, next){
+    var query = "INSERT INTO users" 
+            + "(FirstName, LastName, UserName, `Password`)"
+            + "VALUES (?, ?, ?, ?);"
+    
+    var queryParams = [
+        req.body.firstname,
+        req.body.lastname, 
+        req.body.username,
+        req.body.password
+    ];
+    
+    db.query(query, queryParams, (error, result, fields)=> {
+        if (error){
+            res.status(500).send(error);
+        }
+        res.status(201).send('record added');
+    });
+    
+    
+});
 
 
-}
 
-module.exports = registerUser;
 
-/*exports.register = function(req,res){
-  console.log("req",req.body);
-  var user={
-    "first_name":req.body.first_name,
-    "last_name":req.body.last_name,
-    "username":req.body.username,
-    "password":req.body.password
-  }
-  */

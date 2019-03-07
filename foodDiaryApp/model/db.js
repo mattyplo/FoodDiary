@@ -4,4 +4,4 @@ let credentials = require('./credentials');
 
 var con = mysql.createConnection(credentials.db);
 
-module.exports = Connection;
+module.exports = con;
