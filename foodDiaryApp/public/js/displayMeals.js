@@ -1,6 +1,6 @@
 $(document).ready(function(){
   var meals = {};
-  getMealData(1);
+ 
   $.getJSON("/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
       // capture meal date and format
@@ -14,12 +14,9 @@ $(document).ready(function(){
       //meals.push(mealDate);
       mealFoods = getMealFoods(field.MealID);
       if(meals[mealDate]) {
-        console.log('true');
       } else {
         meals[mealDate] = [];
-        console.log('false');
       }
-      //meals[mealDate];
       var mealTypes = {};
       mealTypes[mealType];
       
@@ -33,21 +30,39 @@ $(document).ready(function(){
         meals[mealDate].push(mealTypes);
       }
 
-      //console.log(JSON.stringify(meals));
-      
-      var meal = "<div class='meal'><h3>" 
-        + mealDate
-        + "</h3><br />"
-        + "<h4>" + mealType + "</h4><br />" + "<ul class='ulMeal'>";
-      for (var i = 0; i < foods.length; i ++) {
-        meal += "<li class='liMeal'>" + foods[i];
-      }
-      meal += "</ul></div>"
+    });
+    outputMealData(meals);
+   
+  });
+  
+  function outputMealData(mealData) {
+
+    sortedMeals = sortMealsByDate(mealData);
+    $.each(sortedMeals, (i, field) => {
+      var meal = "<div class='meal'><h3>" + i + "</h3><br />";
+      $.each(field, (j, item) => {
+        $.each(item, (mealType, foods) => {
+          meal += "<h4>" + mealType + "</h4><br /><ul class='ulMeal'>";
+          $.each(foods, (l, food) => {
+            meal += "<li class='liMeal'>" + food;
+          })
+          meal += "</ul>"
+        })
+        meal += "<div>"
+      })
       $("#mealList").append(meal);
     });
-    
-    console.log(JSON.stringify(meals));
-  });
+  }
+  
+  function sortMealsByDate(mealData) {
+    sortedMeals = {};
+    Object.keys(mealData).sort(function(a, b) {
+      return new Date(b) - new Date(a);
+    }).forEach(function(key) {
+      sortedMeals[key] = mealData[key];
+    });
+    return sortedMeals;
+  }
   
   function getMealData (userID) {
     var mealData
@@ -56,12 +71,13 @@ $(document).ready(function(){
       dataType: 'json', 
       async: false, 
       success: function(json){ 
-        console.log(json); 
+        //console.log(json); 
+        mealData = json;
       }
     });
-    //return mealType;
+    
+    return mealData;
   }
-  
   
   function getMealType (typeID) {
     // Retrieve the MealType given the MealTypeID
