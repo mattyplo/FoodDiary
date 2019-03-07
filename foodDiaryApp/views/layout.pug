@@ -24,5 +24,35 @@ html(lang='en')
                 a(href='/foods') Foods
               li 
                 a(href='/') Login
-            
-      block content
+      div.content
+        block main
+          main
+        block aside
+          aside
+      footer
+        #footer
+          table
+            tr
+              th Our Products
+              th More Info
+              th Connect
+            tr
+              td 
+                a About US
+              td
+                a Buy Our Products
+              td
+                a Contact
+            tr
+              td
+                a Gallery
+              td
+                a FAQ
+              td
+                a Site Map
+          table
+            ul
+              li Copyright 2019 &copy;
+              li All Rights Reserved
+          p#valid
+            a(href = "https://validator.w3.org/check?uri=referer") Valid
