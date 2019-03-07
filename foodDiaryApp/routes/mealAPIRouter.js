@@ -56,7 +56,7 @@ router.post('/newMeal', function(req, res, next) {
     }
     //console.log(result);
     addFoodFromMeal(result.insertId);
-    res.render('journal');
+    
   });
   
   function addFoodFromMeal (mealID)  {
@@ -67,17 +67,16 @@ router.post('/newMeal', function(req, res, next) {
       }
       var foodID = result.insertId;
       addMealFoodFromMeal(mealID, foodID);
-      console.log(result);
     });
   }
   
   function addMealFoodFromMeal (mealID, foodID) {
-    console.log("good");
     var mealsFoodsQuery = "INSERT INTO MealsFoods (MealID, FoodID, GramsConsumed) VALUES (" + mealID + ", " + foodID + ", " + req.body.gramsConsumed + ");";
     db(mealsFoodsQuery, (error, result) => {
       if (error) {
         res.status(500).send(error);
       }
+      res.redirect('/journal');
     });
   }
 });
