@@ -60,13 +60,24 @@ router.post('/newMeal', function(req, res, next) {
   });
   
   function addFoodFromMeal (mealID)  {
-    //console.log("hey");
     var foodQuery = "INSERT INTO Foods (FoodName, GramsPerServing, CaloriesPerGram) VALUES ('" + req.body.foodName + "', " + req.body.gramsPerServing + ", " + req.body.caloriesPerGram + ");";
     db(foodQuery, (error, result) => {
       if (error) {
         res.status(500).send(error);
       }
+      var foodID = result.insertId;
+      addMealFoodFromMeal(mealID, foodID);
       console.log(result);
+    });
+  }
+  
+  function addMealFoodFromMeal (mealID, foodID) {
+    console.log("good");
+    var mealsFoodsQuery = "INSERT INTO MealsFoods (MealID, FoodID, GramsConsumed) VALUES (" + mealID + ", " + foodID + ", " + req.body.gramsConsumed + ");";
+    db(mealsFoodsQuery, (error, result) => {
+      if (error) {
+        res.status(500).send(error);
+      }
     });
   }
 });
