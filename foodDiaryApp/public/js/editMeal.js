@@ -17,13 +17,9 @@ $(document).ready(function() {
           MealID
           MealTypeID
         */
-    
       });
-      console.log(selectMenu);
       selectMenu += "</select>";
       $("#editMealForm").append(selectMenu);
-      //outputMealData(meals);
-   
     });
   }
   
