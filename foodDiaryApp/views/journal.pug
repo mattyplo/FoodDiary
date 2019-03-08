@@ -66,5 +66,9 @@ block content
             button.btn(type="submit" class="btn") Add Meal
             button.btn.cancel#closeFormButton(type="button") Cancel Add Meal
            
-        button#editMeal Edit Meal
+        button(id="editMeal") Edit Meal
+        div.form-popup#editMealDiv
+          form.form-container#editMealForm(action="../api/v1/meals/editMeal" method="post")
+            button.btn(type="submit" class="btn") Edit Meal
+            button.btn.cancel#closeEditFormButton(type="button") Cancel Edit Meal
         div#mealList
