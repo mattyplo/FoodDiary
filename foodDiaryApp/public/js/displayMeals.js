@@ -19,6 +19,11 @@ $(document).ready(function(){
       }
       var mealTypes = {};
       mealTypes[mealType];
+      //console.log(meals[mealDate][0]);
+      for (const meal in meals[mealDate]) {
+        console.log(Object.keys(meals[mealDate][meal])[0] === mealType);
+        console.log(Object.keys(meals[mealDate][meal]) + " " + mealType)
+      }
       
       if (mealFoods.length > 0) {
         $.each(mealFoods, (i, foodId) => {
@@ -31,6 +36,7 @@ $(document).ready(function(){
       }
 
     });
+    console.log(JSON.stringify(meals));
     outputMealData(meals);
    
   });
