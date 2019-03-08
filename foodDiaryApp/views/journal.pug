@@ -3,6 +3,7 @@ extends header
 block append scripts
   script(src="/js/displayMeals.js")
   script(src="/js/addMeal.js")
+  script(src="/js/editMeal.js")
   
 block content
   body
@@ -64,5 +65,6 @@ block content
             br
             button.btn(type="submit" class="btn") Add Meal
             button.btn.cancel#closeFormButton(type="button") Cancel Add Meal
-                
+           
+        button#editMeal Edit Meal
         div#mealList
