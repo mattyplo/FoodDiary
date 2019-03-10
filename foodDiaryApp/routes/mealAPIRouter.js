@@ -12,6 +12,10 @@ router.get('/all', function(req, res, next) {
   });
 });
 
+router.get('/editMeal', function(req, res, next) {
+  var foodName = req.body.foodName;
+})
+
 // will grab all necessary data from the db to populate journal page
 router.get('/mealInfo/:userID', function(req, res, next) {
   var query = "SELECT MealDate, Meals.MealID, MealType, FoodName FROM Meals JOIN MealsFoods ON MealsFoods.MealID = Meals.MealID JOIN Foods ON Foods.FoodID = MealsFoods.FoodID JOIN MealTypes ON MealTypes.MealTypeID = Meals.MealTypeID WHERE UserID = 1 ORDER BY MealDate Desc;";

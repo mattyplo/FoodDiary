@@ -4,12 +4,12 @@ $(document).ready(function() {
   function openForm() {
     document.getElementById("editMealDiv").style.display = "block";
     displayMeals();
-    document.getElementById('mealSelector').addEventListener('change', show_selected);
+    document.getElementById('mealSelector').addEventListener('change', selectMeal);
     var foodName;
     
   }
     
-  function show_selected() {
+  function selectMeal() {
     var selector = document.getElementById('mealSelector');
     var value = selector[selector.selectedIndex].value;
     $.ajax({ 
