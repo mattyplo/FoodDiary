@@ -4,7 +4,9 @@ $(document).ready(function() {
   function openForm() {
     document.getElementById("editMealDiv").style.display = "block";
     displayMeals();
-      document.getElementById('mealSelector').addEventListener('change', show_selected);
+    document.getElementById('mealSelector').addEventListener('change', show_selected);
+    var foodName;
+    
   }
     
   function show_selected() {
@@ -14,11 +16,17 @@ $(document).ready(function() {
       url: "/api/v1/meals/foodInfo/" + value, 
       dataType: 'json', 
       async: false, 
-      success: function(json){ 
-        console.log(json[0].FoodName);  
+      success: function(json){   
         foodName = json[0].FoodName;  
       }  
     })
+    console.log(foodName);
+    displayTextFields();
+  }
+  
+  function displayTextFields() {
+    var fields = "<input type='text' name='foodName' value='" + foodName + "'><br>";
+    $("#editMealForm").append(fields);
   }
   
   function displayMeals() {
@@ -28,17 +36,7 @@ $(document).ready(function() {
       $.each(result, (i, field) => {
         var selectMenu = "<option value='" + field.MealID + "'> " + field.MealDate + "</option>";
         $("#mealSelector").append(selectMenu);
-        /*
-          MealDate
-          MealID
-          MealTypeID
-          UserID
-        */
       });
-      //selectMenu += "</select>";
-     // $("#editMealForm").append(selectMenu);
-        
-    
     });
   }
   
