@@ -16,11 +16,23 @@ router.get('/all', function(req, res, next) {
 router.get('/mealInfo/:userID', function(req, res, next) {
   var query = "SELECT MealDate, Meals.MealID, MealType, FoodName FROM Meals JOIN MealsFoods ON MealsFoods.MealID = Meals.MealID JOIN Foods ON Foods.FoodID = MealsFoods.FoodID JOIN MealTypes ON MealTypes.MealTypeID = Meals.MealTypeID WHERE UserID = 1 ORDER BY MealDate Desc;";
   db(query, (error, result, fields) => {
-    if (error) {
+    if (error) {;
       res.status(500).send(error);
     }
     res.send(result);
   });
+})
+
+// returns food name and foodID given a mealID
+router.get('/foodInfo/:mealID', function(req, res, next) {
+    var query = "SELECT FoodName, FoodID FROM Meals JOIN MealsFoods USING (MealID) JOIN Foods USING (FoodID) WHERE MealID =" + req.params.mealID + ";";
+    db(query, (error, result, fields) => {
+        if (error) {
+            res.status(500).send(error);
+        }
+        res.send(result);
+        console.log(result);
+    })
 })
 
 // returns the FoodIDs when given a mealID as a parameter
