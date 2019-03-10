@@ -12,15 +12,29 @@ router.get('/all', function(req, res, next) {
   });
 });
 
-router.get('/editMeal', function(req, res, next) {
+// This router handles the editMeal form
+router.post('/editMeal', function(req, res, next) {
   var foodName = req.body.foodName;
+  var query = "SELECT FoodID FROM Foods WHERE FoodName ='" + foodName + "'";
+  db(query, (error, result, fields) => {
+    if (error) {
+      res.status(500).send(error);
+    }
+    if (result.length === 0) {
+      // no result, item does not exist, insert
+      console.log("does not exist");
+    } else {
+      // result exists, use food id to switch foods in meal
+      console.log("does exist");
+    }
+  })
 })
 
 // will grab all necessary data from the db to populate journal page
 router.get('/mealInfo/:userID', function(req, res, next) {
   var query = "SELECT MealDate, Meals.MealID, MealType, FoodName FROM Meals JOIN MealsFoods ON MealsFoods.MealID = Meals.MealID JOIN Foods ON Foods.FoodID = MealsFoods.FoodID JOIN MealTypes ON MealTypes.MealTypeID = Meals.MealTypeID WHERE UserID = 1 ORDER BY MealDate Desc;";
   db(query, (error, result, fields) => {
-    if (error) {;
+    if (error) {
       res.status(500).send(error);
     }
     res.send(result);
