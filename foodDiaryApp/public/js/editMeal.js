@@ -24,6 +24,7 @@ $(document).ready(function() {
     displayTextFields();
   }
   
+  // creates a text field, with default value set to food associated with meal chosen from selector option
   function displayTextFields() {
     var fields = "<input type='text' name='foodName' value='" + foodName + "'><br>";
     $("#editMealForm").append(fields);
