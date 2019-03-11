@@ -12,10 +12,23 @@ router.get('/all', function(req, res, next) {
   });
 });
 
+router.post('/mealInfo/:mealID', function(req, res, next) {
+    var query = "SELECT * FROM Meals WHERE MealID =" + req.params.mealID + ";";
+    db(query, (error, result, fields) => {
+        if (error) {
+            res.status(500).send(error);
+        }
+        res.send(result);
+        //console.log(result);
+    })
+})
+
 // This router handles the editMeal form
 router.post('/editMeal', function(req, res, next) {
   var foodName = req.body.foodName;
   var query = "SELECT FoodID FROM Foods WHERE FoodName ='" + foodName + "'";
+  console.log(req.body.caloriesPerGram);
+  console.log(req.body.gramsPerServing);
   db(query, (error, result, fields) => {
     if (error) {
       res.status(500).send(error);
@@ -28,17 +41,18 @@ router.post('/editMeal', function(req, res, next) {
           res.status(500).send(error);
         }
         var foodID = result.insertId;
-        addMealFoodFromMeal(foodID);
+        editMealFood(foodID);
       })
-      console.log("does not exist");
+      //console.log("does not exist");
     } else {
       // result exists, use food id to switch foods in meal
-      console.log("does exist");
+      //console.log(result[0].FoodID);
+      editMealFood(result[0].FoodID);
     }
   })
   
-  function addMealFoodFromMeal (foodID) {
-    var mealsFoodsQuery = "INSERT INTO MealsFoods (MealID, FoodID, GramsConsumed) VALUES (" + req.body.mealID + ", " + foodID + ", " + req.body.gramsConsumed + ");";
+  function editMealFood (foodID) {
+    var mealsFoodsQuery = "UPDATE MealsFoods SET FoodID = " + foodID + " WHERE MealID = " + req.body.mealID + ";";
     db(mealsFoodsQuery, (error, result) => {
       if (error) {
         res.status(500).send(error);
@@ -50,7 +64,7 @@ router.post('/editMeal', function(req, res, next) {
 
 // will grab all necessary data from the db to populate journal page
 router.get('/mealInfo/:userID', function(req, res, next) {
-  var query = "SELECT MealDate, Meals.MealID, MealType, FoodName, GramsConsumed FROM Meals JOIN MealsFoods ON MealsFoods.MealID = Meals.MealID JOIN Foods ON Foods.FoodID = MealsFoods.FoodID JOIN MealTypes ON MealTypes.MealTypeID = Meals.MealTypeID WHERE UserID = 1 ORDER BY MealDate Desc;";
+  var query = "SELECT MealDate, Meals.MealID, MealType, FoodName FROM Meals JOIN MealsFoods ON MealsFoods.MealID = Meals.MealID JOIN Foods ON Foods.FoodID = MealsFoods.FoodID JOIN MealTypes ON MealTypes.MealTypeID = Meals.MealTypeID WHERE UserID = 1 ORDER BY MealDate Desc;";
   db(query, (error, result, fields) => {
     if (error) {
       res.status(500).send(error);
@@ -61,7 +75,7 @@ router.get('/mealInfo/:userID', function(req, res, next) {
 
 // returns food name and foodID given a mealID
 router.get('/foodInfo/:mealID', function(req, res, next) {
-    var query = "SELECT FoodName, FoodID FROM Meals JOIN MealsFoods USING (MealID) JOIN Foods USING (FoodID) WHERE MealID =" + req.params.mealID + ";";
+    var query = "SELECT FoodName, FoodID, GramsPerServing, CaloriesPerGram FROM Meals JOIN MealsFoods USING (MealID) JOIN Foods USING (FoodID) WHERE MealID =" + req.params.mealID + ";";
     db(query, (error, result, fields) => {
         if (error) {
             res.status(500).send(error);

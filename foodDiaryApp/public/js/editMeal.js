@@ -5,6 +5,7 @@ $(document).ready(function() {
     document.getElementById("editMealDiv").style.display = "block";
     displayMeals();
     document.getElementById('mealSelector').addEventListener('change', selectMeal);
+    
     var foodName;
     var gramsPerServing;
     var caloriesPerGram;
@@ -21,14 +22,27 @@ $(document).ready(function() {
       async: false, 
       success: function(json){   
         foodName = json[0].FoodName;  
-        gramsPerServing = json[0].gramsPerServing;
-        caloriesPerGram = json[0].caloriesPerGram;
-        gramsConsumed = json[0].gramsConsumed;
+        gramsConsumed = json[0].GramsConsumed;
+        gramsPerServing = json[0].GramsPerServing;
+        caloriesPerGram = json[0].CaloriesPerGram;
       }  
     })
     displayTextFields();
+    //setMealAttributes();
   }
 
+  /*function setMealAttributes() {
+    $.ajax({
+      url: "/api/v1/meals/mealInfo/" + mealID,
+      dataType: 'json',
+      async: false,
+      success: function(json) {
+        console.log(json[0].GramsPerServing);
+        gramsPerServing = json[0].GramsPerServing;
+        caloriesPerGram = json[0].GaloriesPerGram;
+      }
+    })
+  }*/
   
   // creates a text field, with default value set to food associated with meal chosen from selector option
   function displayTextFields() {
