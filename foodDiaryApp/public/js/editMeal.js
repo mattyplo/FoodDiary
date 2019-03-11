@@ -9,6 +9,7 @@ $(document).ready(function() {
     var gramsPerServing;
     var caloriesPerGram;
     var mealID;
+    var gramsConsumed;
   }
     
   function selectMeal() {
@@ -22,19 +23,22 @@ $(document).ready(function() {
         foodName = json[0].FoodName;  
         gramsPerServing = json[0].gramsPerServing;
         caloriesPerGram = json[0].caloriesPerGram;
+        gramsConsumed = json[0].gramsConsumed;
       }  
     })
     displayTextFields();
   }
+
   
   // creates a text field, with default value set to food associated with meal chosen from selector option
   function displayTextFields() {
     var fields = "<input id='foodNameID' type='text' name='foodName' value='" + foodName + "'><br>";
-    var hiddenFields = "<input id='hiddenGramsPerServing' type='hidden' name='gramsPerServing' value='" + gramsPerServing + "'><input id='hiddenCaloriesPerGram' type='hidden' name='caloriesPerGram' value='" + caloriesPerGram + "'>";
+    var hiddenFields = "<input id='hiddenGramsPerServing' type='hidden' name='gramsPerServing' value='" + gramsPerServing + "'><input id='hiddenCaloriesPerGram' type='hidden' name='caloriesPerGram' value='" + caloriesPerGram + "'><input id='hiddenMealID' type='hidden' name='mealID' value='" + mealID + "'><input id='hiddenGramsConsumed' type='hidden' name='gramsConsumed' value='" + gramsConsumed + "'>";
     if(document.getElementById("foodNameID")) {
       document.getElementById('foodNameID').value = foodName;
       document.getElementById('hiddenGramsPerServing').value = gramsPerServing;
       document.getElementById('hiddenCaloriesPerGram').value = caloriesPerGram;
+      document.getElementById('mealID').value = mealID;
     } else {
       $("#editMealForm").append(fields);
       $("#editMealForm").append(hiddenFields);

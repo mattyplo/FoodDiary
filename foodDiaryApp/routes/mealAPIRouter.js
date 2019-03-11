@@ -22,17 +22,35 @@ router.post('/editMeal', function(req, res, next) {
     }
     if (result.length === 0) {
       // no result, item does not exist, insert
+      var query = "INSERT INTO Foods(FoodName, GramsPerServing, CaloriesPerGram) VALUES ('" + req.body.foodName + "', " + req.body.gramsPerServing + ", " + req.body.caloriesPerGram + ");";
+      db(query, (error, result, fields) => {
+        if (error) {
+          res.status(500).send(error);
+        }
+        var foodID = result.insertId;
+        addMealFoodFromMeal(foodID);
+      })
       console.log("does not exist");
     } else {
       // result exists, use food id to switch foods in meal
       console.log("does exist");
     }
   })
+  
+  function addMealFoodFromMeal (foodID) {
+    var mealsFoodsQuery = "INSERT INTO MealsFoods (MealID, FoodID, GramsConsumed) VALUES (" + req.body.mealID + ", " + foodID + ", " + req.body.gramsConsumed + ");";
+    db(mealsFoodsQuery, (error, result) => {
+      if (error) {
+        res.status(500).send(error);
+      }
+      res.redirect('/journal');
+    });
+  }
 })
 
 // will grab all necessary data from the db to populate journal page
 router.get('/mealInfo/:userID', function(req, res, next) {
-  var query = "SELECT MealDate, Meals.MealID, MealType, FoodName FROM Meals JOIN MealsFoods ON MealsFoods.MealID = Meals.MealID JOIN Foods ON Foods.FoodID = MealsFoods.FoodID JOIN MealTypes ON MealTypes.MealTypeID = Meals.MealTypeID WHERE UserID = 1 ORDER BY MealDate Desc;";
+  var query = "SELECT MealDate, Meals.MealID, MealType, FoodName, GramsConsumed FROM Meals JOIN MealsFoods ON MealsFoods.MealID = Meals.MealID JOIN Foods ON Foods.FoodID = MealsFoods.FoodID JOIN MealTypes ON MealTypes.MealTypeID = Meals.MealTypeID WHERE UserID = 1 ORDER BY MealDate Desc;";
   db(query, (error, result, fields) => {
     if (error) {
       res.status(500).send(error);
@@ -121,5 +139,6 @@ router.post('/newMeal', function(req, res, next) {
     });
   }
 });
+
 
 module.exports = router;
