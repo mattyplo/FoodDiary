@@ -51,8 +51,8 @@ router.get('/del', function(req, res, next) {
 router.get('/search', function(req, res, next) {
 
   let food = req.query;
-  console.log('query item is ' + food.foodName);
-  var isEmpty = food.foodName == undefined
+  // console.log('query item is ' + food.foodName);
+  var isEmpty = food.foodName == undefined || food.foodName.length == 0
               ? true : false;
   // console.log(isEmpty);
   if (!isEmpty) {

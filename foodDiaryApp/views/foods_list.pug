@@ -3,6 +3,8 @@ extend layout
 block append scripts
   script(src="/js/foodItemManipulation.js")
   script(src="/js/foodListGen.js")
+
+  
 block main
   main#food
     form#search(action='/api/v1/food/search' method='GET')

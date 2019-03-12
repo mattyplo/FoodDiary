@@ -10,7 +10,7 @@ var registrationPageRouter = require('./routes/registrationPage');
 var journalRouter = require('./routes/journal');
 var mealAPIRouter = require('./routes/mealAPIRouter');
 var foodsListRouter = require('./routes/foods_list');
-var foodsRouter = require('./routes/foods');
+var foodsAPIRouter = require('./routes/foods');
 var foodItemRouter = require('./routes/foods_detail');
 
 var app = express();
@@ -30,7 +30,7 @@ app.use('/addUser', registerUserRouter);
 app.use('/register', registrationPageRouter);
 app.use('/journal', journalRouter);
 app.use('/foods', foodsListRouter);
-app.use('/api/v1/food', foodsRouter);
+app.use('/api/v1/food', foodsAPIRouter);
 app.use('/foods/detail', foodItemRouter);
 app.use('/api/v1/meals', mealAPIRouter);
 

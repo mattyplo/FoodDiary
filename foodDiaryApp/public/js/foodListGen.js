@@ -1,17 +1,24 @@
 $(document).ready(function(){
-  $("#foodlist").getJSON('/foods/search', (results) => {
+  $.getJSON('/api/v1/food/search', (results) => {
+
+    // var obj = JSON.parse(results);
+
+    // console.log("converted search results: " + obj);
     
     for(i=0; i<results.length; i++){
-      ("#foodlist").innerHTML = 
+      var obj = JSON.parse(results[i]);
+      console.log (obj);
+      var fl_item= 
         "<div class='foodlist_item'>"
-        + "<a id='" + results[i].FoodName + " herf='/foods/detail?foodName=" + results[i].FoodName + "&FoodID=" + results[i].foodID + ">"
+        + "<a id='" + obj[i].FoodName + " herf='/foods/detail?foodName=" + obj[i].FoodName + "&FoodID=" + obj[i].foodID + ">"
         + "<img class='foodicon' src='/img/placeholder.png' alt='Food Icon'>"
         + "<div class=foodlist_itemProperty>"
         + "<ul>"
-        + "<il class='foodlist_itemName'> "+ results[i].FoodName + "</il> </br> </br>"
-        + "<il> Serving Size: " + results[i].GramsPerServing + "grams </il> </br>"
-        + "<il> Calories: " + results[i].CaloriesPerGram + " per gram </il>"
+        + "<il class='foodlist_itemName'> "+ obj[i].FoodName + "</il> </br> </br>"
+        + "<il> Serving Size: " + obj[i].GramsPerServing + "grams </il> </br>"
+        + "<il> Calories: " + obj[i].CaloriesPerGram + " per gram </il>"
         + "</ul> </div> </a> </div>"
+      $("#foodlist").append(fl_item);
     }
-  })
+   })
 })
