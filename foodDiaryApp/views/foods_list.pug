@@ -2,22 +2,20 @@ extend layout
 
 block append scripts
   script(src="/js/foodItemManipulation.js")
-
+  script(src="/js/foodListGen.js")
 block main
   main#food
-    form#search(action='/foods/search' name='searchbar' method='GET')
+    form#search(action='/api/v1/food/search' method='GET')
         input(type='text' name='foodName' placeholder='What is for dinner?' size='100')
         input(type='submit' value='Search')
     #foodlist
-      .foodlist_item
-        a(herf='')
-        img.foodicon(src='/img/placeholder.png' alt='Food Icon')
+        
 
 block aside
   aside#food
     ul#foodasidelist
       div.form-popup#myForm
-        form(action='/foods' method='GET')
+        form(action='/api/v1/food/man' method='GET')
           legend Food Demo
             fieldset
               div
@@ -36,7 +34,7 @@ block aside
       li
         button.foodItemManipulation#editItem Edit Item
       .form-popup#myDelForm
-        form(action='/foods/del' method='GET')
+        form(action='/api/v1/food/del' method='GET')
           h1 Delete Food
           label Food Name
           input(type='text' name='foodName')
