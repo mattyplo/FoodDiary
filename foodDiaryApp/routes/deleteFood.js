@@ -6,7 +6,7 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-  res.render('deleteFood', {
+  res.render('foods_list', {
     title:'DELETE FOOD',
 
     
