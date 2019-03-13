@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
+var auth = require('./authorization');
 
 /* Access login function */
 router.post('/', function(req, res, next) {
@@ -16,7 +17,8 @@ router.post('/', function(req, res, next) {
 	} else {
 	    if(String(result[0].Password).trim() == String(req.body.password).trim()) {
 		// I believe session code should be added here:
-                
+        req.session.user = fields.UserName;
+        req.session.admin = true;
 		res.redirect('/journal')
 	    } else {
 		res.redirect('/bad_login')
