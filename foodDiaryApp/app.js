@@ -15,7 +15,7 @@ var mealAPIRouter = require('./routes/mealAPIRouter');
 var foodsListRouter = require('./routes/foods_list');
 var foodsAPIRouter = require('./routes/foods');
 var foodItemRouter = require('./routes/foods_detail');
-var authRooter = require('./routes/authorization');
+//var authRooter = require('./routes/authorization');
 var loginRouter = require('./routes/login');
 var login_failRouter = require('./routes/login_fail');
 
@@ -46,7 +46,7 @@ app.use('/foods', foodsListRouter);
 app.use('/api/v1/food', foodsAPIRouter);
 app.use('/foods/detail', foodItemRouter);
 app.use('/api/v1/meals', mealAPIRouter);
-app.use('/auth', authRooter);
+//app.use('/auth', authRooter);
 app.use('/login', loginRouter);
 app.use('/login_fail', login_failRouter);
 

@@ -12,34 +12,4 @@ router.get('/', auth, function(req, res, next) {
   });
 });
 
-/*var sql = "select * from meals";
-db(sql, function(err, queryResults) {
- GET users listing. 
-  console.log(queryResults);
-  router.get('/', function(req, res, next) {
-    res.render('journal', {
-      title:'Journal',
-      meals: meals.meals,
-      users: JSON.stringify(queryResults[0])
-    });
-  });
-})
-   */
-
-
-
-/*router.get('/', function(req, res, next) {
-  var query = 'SELECT * FROM meals;';
-  db(query, function(err, queryResults) {
-    if (err) {
-      res.status(500).send(error);
-    }
-    res.render('journal', {
-      title:'Journal',
-      meals: meals.meals,
-      users: JSON.stringify(queryResults[0])
-    });
-  });
-});*/
-
 module.exports = router;
