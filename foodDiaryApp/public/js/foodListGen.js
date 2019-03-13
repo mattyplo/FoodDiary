@@ -1,6 +1,10 @@
 $(document).ready(function(){
-  $.getJSON('/api/v1/food/search', (results) => {
-
+  var searchbtn = document.getElementById('searchbtn');
+  searchbtn.addEventListener('click', searchJSON());
+  function searchJSON() {
+    console.log('hello foodlistgen');
+  $.getJSON('', (results) => {
+    console.log('hello from inside getJSON');
     // var obj = JSON.parse(results);
 
     // console.log("converted search results: " + obj);
@@ -21,4 +25,5 @@ $(document).ready(function(){
       $("#foodlist").append(fl_item);
     }
    })
+  }
 })

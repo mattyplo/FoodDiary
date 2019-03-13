@@ -61,6 +61,13 @@ router.get('/search', function(req, res, next) {
         if (err) {
           res.status(500).send(error);
         }
+
+
+        // res.render('foods_list', {
+        //   title:'FOODS',
+        //   results
+        // })
+
         res.send(results);
         // if (err) console.log(err);
 
@@ -75,6 +82,8 @@ router.get('/search', function(req, res, next) {
         //         '\n'
         //     )
         // }
+
+        // res.redirect('/foods')
     });
   }
 
