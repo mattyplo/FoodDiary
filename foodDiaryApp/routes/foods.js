@@ -48,45 +48,45 @@ router.get('/del', function(req, res, next) {
 });
 
 // search
-router.get('/search', function(req, res, next) {
+// router.get('/search', function(req, res, next) {
 
-  let food = req.query;
-  // console.log('query item is ' + food.foodName);
-  var isEmpty = food.foodName == undefined || food.foodName.length == 0
-              ? true : false;
-  // console.log(isEmpty);
-  if (!isEmpty) {
-    fm.fuzzySearch(food.foodName,(err, results) => {
+//   let food = req.query;
+//   // console.log('query item is ' + food.foodName);
+//   var isEmpty = food.foodName == undefined || food.foodName.length == 0
+//               ? true : false;
+//   // console.log(isEmpty);
+//   if (!isEmpty) {
+//     fm.fuzzySearch(food.foodName,(err, results) => {
 
-        if (err) {
-          res.status(500).send(error);
-        }
+//         if (err) {
+//           res.status(500).send(error);
+//         }
 
 
-        // res.render('foods_list', {
-        //   title:'FOODS',
-        //   results
-        // })
+//         // res.render('foods_list', {
+//         //   title:'FOODS',
+//         //   results
+//         // })
 
-        res.send(results);
-        // if (err) console.log(err);
+//         res.send(results);
+//         // if (err) console.log(err);
 
-        // for (i = 0; i < results.length; i++){
-        //     console.log(
-        //         "Food Name: "
-        //         + results[i].FoodName +
-        //         " Grams Per Serving: "
-        //         + results[i].GramsPerServing +
-        //         " Calories Per Gram: "
-        //         + results[i].CaloriesPerGram +
-        //         '\n'
-        //     )
-        // }
+//         // for (i = 0; i < results.length; i++){
+//         //     console.log(
+//         //         "Food Name: "
+//         //         + results[i].FoodName +
+//         //         " Grams Per Serving: "
+//         //         + results[i].GramsPerServing +
+//         //         " Calories Per Gram: "
+//         //         + results[i].CaloriesPerGram +
+//         //         '\n'
+//         //     )
+//         // }
 
-        // res.redirect('/foods')
-    });
-  }
+//         // res.redirect('/foods')
+//     });
+//   }
 
-});
+// });
 
 module.exports = router;
