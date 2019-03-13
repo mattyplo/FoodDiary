@@ -5,7 +5,7 @@ var db = require('../model/db');
 
 /* Access login function */
 router.post('/', function(req, res, next) {
-    var query = "SELECT UserName, Password"
+    var query = "SELECT UserID, UserName, Password"
         + " FROM Users"
         + " WHERE Users.UserName = '" + req.body.username + "';"
 
@@ -17,8 +17,10 @@ router.post('/', function(req, res, next) {
 	} else {
 	    if(String(result[0].Password).trim() == String(req.body.password).trim()) {
 		// I believe session code should be added here:
-        req.session.user = fields.UserName;
+        req.session.user = result[0].UserName;
         req.session.admin = true;
+        req.session.userID = result[0].UserID;
+        console.log(req.session);
 		res.redirect('/journal')
 	    } else {
 		res.redirect('/bad_login')
