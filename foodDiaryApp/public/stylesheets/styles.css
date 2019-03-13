@@ -116,7 +116,7 @@ main h1 {
 
 main#food{
     width: 75%;
-    clear: none;
+    clear: left;
 }
 
 aside#food{

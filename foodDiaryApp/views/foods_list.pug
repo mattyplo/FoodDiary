@@ -1,0 +1,49 @@
+extend layout
+
+block append scripts
+  script(src="/js/foodItemManipulation.js")
+  //- script(src="/js/foodListGen.js")
+
+  
+block main
+  main#food
+    form#search(action='/api/v1/food/search' method='GET')
+        input(type='text' name='foodName' placeholder='What is for dinner?' size='100')
+        input#searchbtn(type='submit' value='Search')
+
+    #foodlist
+
+        
+
+block aside
+  aside#food
+    ul#foodasidelist
+      div.form-popup#myForm
+        form(action='/api/v1/food/man' method='GET')
+          legend Food Demo
+            fieldset
+              div
+                label Food Name
+                input(name='foodName')
+              div
+                label Grams Per Serving
+                input(name='gPerServing')
+              div
+                label Calories Per Gram
+                input(name='cPerGram')
+              input(type='submit' class='btn' onclick="foodData()" value='Add/Edit')
+              input(type='button' id='closeFormButton' class='btn cancel' value='Cancel')
+      li
+        button.foodItemManipulation#addItem Add Item
+      li
+        button.foodItemManipulation#editItem Edit Item
+      .form-popup#myDelForm
+        form(action='/api/v1/food/del' method='GET')
+          h1 Delete Food
+          label Food Name
+          input(type='text' name='foodName')
+          br
+          input.btn#delFood(type='submit' value='Delete Food')
+          input(type='button' id='closeFormButton' class='btn cancel' value='Cancel')
+      li
+        button.foodItemManipulation#deleteItem Delete Item
