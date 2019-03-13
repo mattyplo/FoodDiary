@@ -16,10 +16,10 @@ router.post('/', function(req, res, next) {
 	} else {
 	    if(String(result[0].Password).trim() == String(req.body.password).trim()) {
 		// I believe session code should be added here:
-
-		res.render('journal', {title:'Journal'})
+                
+		res.redirect('/journal')
 	    } else {
-		res.render('bad_login', {title:"Login failure."})
+		res.redirect('/bad_login')
 	    }
 	    
 	}
