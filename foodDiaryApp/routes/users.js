@@ -1,13 +1,30 @@
 var express = require('express');
 var router = express.Router();
+var db = require('../model/db');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.post('/', function(req, res, next){
+    var query = "INSERT INTO users" 
+            + "(FirstName, LastName, UserName, `Password`)"
+            + "VALUES (?, ?, ?, ?);"
+    
+    var queryParams = [
+        req.body.firstname,
+        req.body.lastname, 
+        req.body.username,
+        req.body.password
+    ];
+    
+    db.query(query, queryParams, (error, result, fields)=> {
+        if (error){
+            res.status(500).send(error);
+        } else {
+        res.render('profile', {
+    title:'Profile' 
+  });
+        }
+    });
+        
+        
 });
-
-router.get('/cool/', function(req, res, next) {
-  res.send("You're so cool");
-})
 
 module.exports = router;

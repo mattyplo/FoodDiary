@@ -1,12 +1,12 @@
 $(document).ready(function(){
   var meals = {};
-  $.getJSON("http://localhost:3000/api/v1/meals/all", (result)=>{
+ 
+  $.getJSON("/api/v1/meals/all", (result)=>{
     $.each(result, (i, field) => {
       // capture meal date and format
       var mealDate = field.MealDate;
       var tIndex = mealDate.indexOf('T');
       var mealDate = mealDate.substring(0, tIndex);
-      
       var mealFoods = [];
       var foods = []
       var foodName;
@@ -14,12 +14,9 @@ $(document).ready(function(){
       //meals.push(mealDate);
       mealFoods = getMealFoods(field.MealID);
       if(meals[mealDate]) {
-        console.log('true');
       } else {
         meals[mealDate] = [];
-        console.log('false');
       }
-      //meals[mealDate];
       var mealTypes = {};
       mealTypes[mealType];
       
@@ -33,25 +30,60 @@ $(document).ready(function(){
         meals[mealDate].push(mealTypes);
       }
 
-      //console.log(JSON.stringify(meals));
-      
-      var meal = "<div class='meal'><h3>MealID = " 
-        + field.MealID
-        + "</h3><br />"
-        + "<h3>Date = " + field.MealDate + "</h3><br />"
-        + "<h3>MealTypeID = " + field.MealTypeID + "</h3><br />"
-        + "<h3>UserID = " + field.UserID + "</h3><br /></div>";
+    });
+    outputMealData(meals);
+   
+  });
+  
+  function outputMealData(mealData) {
+
+    sortedMeals = sortMealsByDate(mealData);
+    $.each(sortedMeals, (i, field) => {
+      var meal = "<div class='meal'><h3>" + i + "</h3><br />";
+      $.each(field, (j, item) => {
+        $.each(item, (mealType, foods) => {
+          meal += "<h4>" + mealType + "</h4><br /><ul class='ulMeal'>";
+          $.each(foods, (l, food) => {
+            meal += "<li class='liMeal'>" + food;
+          })
+          meal += "</ul>"
+        })
+        meal += "<div>"
+      })
       $("#mealList").append(meal);
     });
+  }
+  
+  function sortMealsByDate(mealData) {
+    sortedMeals = {};
+    Object.keys(mealData).sort(function(a, b) {
+      return new Date(b) - new Date(a);
+    }).forEach(function(key) {
+      sortedMeals[key] = mealData[key];
+    });
+    return sortedMeals;
+  }
+  
+  function getMealData (userID) {
+    var mealData
+    $.ajax({
+      url: "/api/v1/meals/mealInfo/" + 1,
+      dataType: 'json', 
+      async: false, 
+      success: function(json){ 
+        //console.log(json); 
+        mealData = json;
+      }
+    });
     
-    console.log(JSON.stringify(meals));
-  });
+    return mealData;
+  }
   
   function getMealType (typeID) {
     // Retrieve the MealType given the MealTypeID
     var mealType
     $.ajax({ 
-      url: "http://localhost:3000/api/v1/meals/mealType/" + typeID, 
+      url: "/api/v1/meals/mealType/" + typeID, 
       dataType: 'json', 
       async: false, 
       success: function(json){ 
@@ -66,7 +98,7 @@ $(document).ready(function(){
     // Retrieve the FoodName given the foodID
     var foodName
     $.ajax({ 
-      url: "http://localhost:3000/api/v1/meals/foodName/" + foodID, 
+      url: "/api/v1/meals/foodName/" + foodID, 
       dataType: 'json', 
       async: false, 
       success: function(json){ 
@@ -85,7 +117,7 @@ $(document).ready(function(){
    
     var mealData = []
     $.ajax({ 
-      url: "http://localhost:3000/api/v1/meals/mealsFoodsID/" + mealID, 
+      url: "/api/v1/meals/mealsFoodsID/" + mealID, 
       dataType: 'json', 
       async: false, 
       success: function(json){ 

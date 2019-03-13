@@ -109,13 +109,14 @@ main ul {
         margin-bottom:10px;
 }
 
+
 main h1 {
     text-align:center;
 }
 
 main#food{
     width: 75%;
-    clear: none;
+    clear: left;
 }
 
 aside#food{
