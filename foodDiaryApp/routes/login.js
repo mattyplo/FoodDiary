@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
 	    //res.status(500.send(error));
 	    console.log(error);
 	} else {
-	    if(String(result[0].Password).trim() == String(req.body.password).trim()) {
+	    if(!result[0].Password || String(result[0].Password).trim() == String(req.body.password).trim()) {
 		// I believe session code should be added here:
         req.session.user = result[0].UserName;
         req.session.admin = true;
@@ -23,7 +23,7 @@ router.post('/', function(req, res, next) {
         console.log(req.session);
 		res.redirect('/journal')
 	    } else {
-		res.redirect('/bad_login')
+		res.redirect('/')
 	    }
 	    
 	}
