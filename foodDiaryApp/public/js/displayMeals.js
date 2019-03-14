@@ -45,10 +45,10 @@ $(document).ready(function(){
 
     sortedMeals = sortMealsByDate(mealData);
     $.each(sortedMeals, (i, field) => {
-      var meal = "<div class='meal'><h3>" + i + "</h3><br />";
+      var meal = "<div class='meal'><h3>" + i + "</h3>";
       $.each(field, (j, item) => {
         $.each(item, (mealType, foods) => {
-          meal += "<h4>" + mealType + "</h4><br /><ul class='ulMeal'>";
+          meal += "<h4>" + mealType + "</h4><ul class='ulMeal'>";
           $.each(foods, (l, food) => {
             meal += "<li class='liMeal'>" + food;
           })
