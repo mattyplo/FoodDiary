@@ -55,7 +55,7 @@ $(document).ready(function(){
         $.each(item, (mealType, foods) => {
           meal += "<h4>" + mealType + "</h4><ul class='ulMeal'>";
           $.each(foods, (l, food) => {
-            meal += "<li class='liMeal'>" + food;
+            meal += "<li class='liMeal'>" + food + "</li>";
           })
           meal += "</ul>"
         })

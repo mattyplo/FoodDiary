@@ -45,3 +45,22 @@ main li {
   display: block;
   #background-color: azure;
 }
+
+.meal h3 {
+  font-size: 3em;
+  margin-left: 10%;
+}
+
+.meal h4 {
+  font-size: 2em;
+  margin-left: 20%;
+}
+
+.meal ul {
+  font-size: 1.5em;
+}
+
+.meal li {
+  margin-left:30%;
+}
+
