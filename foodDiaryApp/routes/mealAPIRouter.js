@@ -121,17 +121,32 @@ router.get('/foodName/:foodID', function(req, res, next) {
 })
 
 router.post('/newMeal', function(req, res, next) {
-  var query = "INSERT INTO MEALS (MealDate, MealTypeID, UserID) VALUES ('" + req.body.date + "', " + req.body.mealType + ", " + req.session.userID + ")";
   
-  
+  // Check if meal exists first
+  var query = "SELECT MealID FROM Meals WHERE MealDate = '" + req.body.date + "' AND MealTypeID = " + req.body.mealType + ";";
   db(query, (error, result) => {
     if (error) {
       res.status(500).send(error);
     }
-    //console.log(result);
-    addFoodFromMeal(result.insertId);
-    
+    if (result.length === 0) {
+      addMeal();
+    } else {
+      var mealID = result[0].MealID;
+      addFoodFromMeal(mealID);
+    }
   });
+  
+  function addMeal() {
+    var query = "INSERT INTO MEALS (MealDate, MealTypeID, UserID) VALUES ('" + req.body.date + "', " + req.body.mealType + ", " + req.session.userID + ")";
+  
+    db(query, (error, result) => {
+      if (error) {
+        res.status(500).send(error);
+      }
+      //console.log(result);
+      addFoodFromMeal(result.insertId);
+    });
+  }
   
   function addFoodFromMeal (mealID)  {
     var query = "SELECT FoodID FROM Foods WHERE FoodName ='" + req.body.foodName + "'";
