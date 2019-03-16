@@ -36,14 +36,26 @@ $(document).ready(function() {
   $('#searchbtn').click(function(){
     let keyWord = $('#searchField').val();
     // alert(keyWord);
-    let ur = "/api/v1/food/search/" + keyWord;
-    alert(ur);
+
     $.ajax({
       url: "/api/v1/food/search/" + keyWord,
       dataType: 'json',
       async: false,
-      success: function(json) {
-        alert(json);
+      success: function(results) {
+        // alert(JSON.stringify(results));
+        for(i=0; i<results.length; i++){
+          var fl_item= 
+            "<div class='foodlist_item'>"
+            + "<a id='" + results[i].FoodName + " herf='/foods/detail?foodName=" + results[i].FoodName + "&FoodID=" + results[i].foodID + ">"
+            + "<img class='foodicon' src='/img/placeholder.png' alt='Food Icon'>"
+            + "<div class=foodlist_itemProperty>"
+            + "<ul>"
+            + "<il class='foodlist_itemName'> "+ results[i].FoodName + "</il> </br> </br>"
+            + "<il> Serving Size: " + results[i].GramsPerServing + "grams </il> </br>"
+            + "<il> Calories: " + results[i].CaloriesPerGram + " per gram </il>"
+            + "</ul> </div> </a> </div>"
+          $("#foodlist").append(fl_item);
+        }
       }
     })
   })

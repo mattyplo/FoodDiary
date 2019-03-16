@@ -56,22 +56,21 @@ router.get('/search/:food', function(req, res, next) {
               ? true : false;
   // console.log(isEmpty);
   if (!isEmpty) {
-    console.log('query item is ' + food);
+    // console.log('query item is ' + food);
 
     fm.fuzzySearch(food,(err, results) => {
+      if (err) {
+        res.status(500).send(error);
+      }  
 
-    if (err) {
-      res.status(500).send(error);
-    }  
+      // for (i = 0; i < results.length; i++){
+      //     console.log(
+      //       "Food Name: " + results[i].FoodName + " Grams Per Serving: "
+      //        + results[i].GramsPerServing + " Calories Per Gram: " + results[i].CaloriesPerGram + '\n'
+      //        )
+      // }
 
-    for (i = 0; i < results.length; i++){
-        console.log(
-          "Food Name: " + results[i].FoodName + " Grams Per Serving: "
-           + results[i].GramsPerServing + " Calories Per Gram: " + results[i].CaloriesPerGram + '\n'
-           )
-    }
-
-    res.send(results);
+      res.send(results);
     });
   }
 });
