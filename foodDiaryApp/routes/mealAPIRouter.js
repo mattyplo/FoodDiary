@@ -89,7 +89,7 @@ router.get('/foodInfo/:mealID', function(req, res, next) {
 // returns the FoodIDs when given a mealID as a parameter
 router.get('/mealsFoodsID/:mealID', function(req, res, next) {
   var query = "SELECT FoodID FROM MealsFoods WHERE MealID =" + req.params.mealID;
-  //console.log(req.params.mealID);
+  // console.log(req.params.mealID);
   db(query, (error, result, fields) => {
     if (error) {
       res.status(500).send(error);
