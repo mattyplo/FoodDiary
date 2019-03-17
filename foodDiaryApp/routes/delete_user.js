@@ -11,8 +11,8 @@ router.get('/', function(req, res, next) {
 /* POST handler that deletes user */
 router.post('/', function(req, res, next) {
     var query = "DELETE FROM users"
-        + " WHERE UserName = " + req.body.username
-        + " AND Password = " + req.body.password;
+        + " WHERE UserName = '" + req.body.username
+        + "' AND Password = '" + req.body.password + "';";
 
     db.query(query, (error, result, fields)=> {
 	if (error) {
