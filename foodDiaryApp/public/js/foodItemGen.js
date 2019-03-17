@@ -21,7 +21,7 @@ function getFood(foodID){
                 + "<li> Serving Size: " + result[0].GramsPerServing + "grams </li>"
                 + "<li> Calories per Serving: " + result[0].CaloriesPerGram * result[0].GramsPerServing + "</li>"
                 + "</ul>"
-                console.log(foodItem);
+                // console.log(foodItem);
                 $("#fooditem").append(foodItem);
             }
             else $("#fooditem").append('Something is wrong, we can not find this food.');

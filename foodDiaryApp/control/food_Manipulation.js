@@ -87,7 +87,7 @@ function foodDelete(food) {
         if (!isEmpty){
             let deleteFood = "DELETE FROM foods WHERE FoodID = "
                            + result[0].FoodID;
-            console.log(deleteFood);
+            // console.log(deleteFood);
             sql(deleteFood, (err, result) => {});
         } else {
             console.log('no such food');

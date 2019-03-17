@@ -19,18 +19,18 @@ block aside
   aside#food
     ul#foodasidelist
       .form-popup#foodAddEditForm
-        form(action='/api/v1/food/man' method='GET')
+        form(action='' method='GET')
           legend Food Demo
             fieldset
               div
                 label Food Name
-                input(name='foodName')
+                input#foodName
               div
                 label Grams Per Serving
-                input(name='gPerServing')
+                input#gPerServing
               div
                 label Calories Per Gram
-                input(name='cPerGram')
+                input#cPerGram
               input.btn#addEditBtn(type='submit' value='Add/Edit')
               button#closeAEForm Cancel
       li
@@ -38,11 +38,12 @@ block aside
       li
         button.foodItemManipulation#editItem Edit Food
       .form-popup#foodDelForm
-        form(action='/api/v1/food/del' method='GET')
-          h1 Delete Food
-          label Food Name
-          input(type='text' name='foodName')
-          br
+        form(action='' method='GET')
+          legend Delete Food
+            fieldset
+              div
+                label Food Name
+                input#delFoodName
           input.btn#delFood(type='submit' value='Delete Food')
           button#closeDelForm Cancel
       li
