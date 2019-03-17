@@ -4,7 +4,7 @@ let sql = require('../model/db_connection');
 
 function foodManipulation(food) {
 
-    console.log('input is ' + food)
+    // console.log('input is ' + food)
 
     // Update Food With Given FoodID
     let updateWithID = "UPDATE foods SET "

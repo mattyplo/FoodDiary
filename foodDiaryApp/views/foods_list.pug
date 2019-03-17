@@ -2,7 +2,7 @@ extend layout
 
 block append scripts
   script(src="/js/foodListGen.js")
-  script(src="/js/foodItemManipulation.js")
+  script(src="/js/foodFormHandle.js")
 
   
 block main
@@ -18,7 +18,7 @@ block main
 block aside
   aside#food
     ul#foodasidelist
-      div.form-popup#myForm
+      .form-popup#foodAddEditForm
         form(action='/api/v1/food/man' method='GET')
           legend Food Demo
             fieldset
@@ -31,19 +31,19 @@ block aside
               div
                 label Calories Per Gram
                 input(name='cPerGram')
-              input(type='submit' class='btn' onclick="foodData()" value='Add/Edit')
-              input(type='button' id='closeFormButton' class='btn cancel' value='Cancel')
+              input.btn#addEditBtn(type='submit' value='Add/Edit')
+              button#closeAEForm Cancel
       li
-        button.foodItemManipulation#addItem Add Item
+        button.foodItemManipulation#addItem Add Food
       li
-        button.foodItemManipulation#editItem Edit Item
-      .form-popup#myDelForm
+        button.foodItemManipulation#editItem Edit Food
+      .form-popup#foodDelForm
         form(action='/api/v1/food/del' method='GET')
           h1 Delete Food
           label Food Name
           input(type='text' name='foodName')
           br
           input.btn#delFood(type='submit' value='Delete Food')
-          input(type='button' id='closeFormButton' class='btn cancel' value='Cancel')
+          button#closeDelForm Cancel
       li
-        button.foodItemManipulation#deleteItem Delete Item
+        button.foodItemManipulation#deleteItem Delete Food

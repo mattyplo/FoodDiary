@@ -22,7 +22,7 @@ router.get('/del', function(req, res, next) {
   let food = req.query;
   var isEmpty = food.foodName == undefined
               ? true : false;
-  console.log('Is input empty:' + isEmpty);
+  // console.log('Is input empty:' + isEmpty);
   if (!isEmpty) {
     //test search
     fm.search(food.foodName, (err, result) => {
@@ -40,8 +40,6 @@ router.get('/del', function(req, res, next) {
           if (!isConstraint) fm.del(food.foodName)
           else alert(food.foodName + ' is referred in one or more meals, cannot be deleted!');
         });
-      } else {
-        alert('The food ' + food.foodName + 'you want to delete do not exist!');
       }
     })
   } 
