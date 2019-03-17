@@ -7,7 +7,9 @@ html
     div(id='wrapper')
       header
         h1 Dietary Food Journal
+        
       main
+        h2= incorrectLoginMsg
         p The Dietary Food Journal web application provides you with three core functionalities. First, you can add, update or remove food items from the food database. Second you can create a day by day journal documenting what you ate for breakfast, lunch, dinner, and snacks. Third you can review your journalto see what you ate.
       asside
         form(action='/login' method='POST')

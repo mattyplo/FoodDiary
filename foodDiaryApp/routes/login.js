@@ -15,19 +15,20 @@ router.post('/', function(req, res, next) {
 	    //res.status(500.send(error));
 	    console.log(error);
 	} else {
-        console.log(result.length);
         if (result.length === 0) {
-          res.redirect('/');
+          var incorrectLoginMsg = encodeURIComponent('Your UserID or Password was invlaid');
+  res.redirect('/?valid=' + incorrectLoginMsg);
         }
 	    else if (!result[0].Password || String(result[0].Password).trim() == String(req.body.password).trim()) {
-		// I believe session code should be added here:
-        req.session.user = result[0].UserName;
-        req.session.admin = true;
-        req.session.userID = result[0].UserID;
-        console.log(req.session);
-		res.redirect('/journal')
+          // I believe session code should be added here:
+          req.session.user = result[0].UserName;
+          req.session.admin = true;
+          req.session.userID = result[0].UserID;
+          console.log(req.session);
+          res.redirect('/journal')
 	    } else {
-		res.redirect('/')
+		  var incorrectLoginMsg = encodeURIComponent('Your UserID or Password was invlaid');
+  res.redirect('/?valid=' + incorrectLoginMsg);
 	    }
 	    
 	}
