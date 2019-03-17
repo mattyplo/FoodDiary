@@ -15,7 +15,11 @@ router.post('/', function(req, res, next) {
 	    //res.status(500.send(error));
 	    console.log(error);
 	} else {
-	    if(!result[0].Password || String(result[0].Password).trim() == String(req.body.password).trim()) {
+        console.log(result.length);
+        if (result.length === 0) {
+          res.redirect('/');
+        }
+	    else if (!result[0].Password || String(result[0].Password).trim() == String(req.body.password).trim()) {
 		// I believe session code should be added here:
         req.session.user = result[0].UserName;
         req.session.admin = true;
