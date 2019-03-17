@@ -7,7 +7,7 @@ var router = express.Router();
 //add/edit food
 router.get('/man', function(req, res, next) {
   let food = req.query;
-  console.log('query is ' + food.foodName);
+  // console.log('query is ' + food.foodName);
   var isEmpty = food.foodName == undefined
               ? true : false;
   // console.log(isEmpty);
@@ -38,13 +38,14 @@ router.get('/del', function(req, res, next) {
           console.log('Prohibit to Delete: ' + isConstraint);
 
           if (!isConstraint) fm.del(food.foodName)
-          else console.log('Food is referred in meals, cannot be deleted!');
+          else alert(food.foodName + ' is referred in one or more meals, cannot be deleted!');
         });
       } else {
-        console.log('no such food');
+        alert('The food ' + food.foodName + 'you want to delete do not exist!');
       }
     })
-  }
+  } 
+  else alert('The food ' + food.foodName + 'you want to delete do not exist!');
 
 });
 
@@ -83,6 +84,23 @@ router.get('/detail/:foodID', function(req, res, next) {
   let sqlQuery = "SELECT * FROM FOODS WHERE FoodID = ?";
   // console.log(sqlQuery + foodID);
   db.query(sqlQuery, foodID, (error, result) => {
+    if (error) {
+      res.status(500).send(error);
+    }
+
+    // console.log(result);
+    res.send(result);
+  });
+
+});
+
+router.get('/ini/:num', function(req, res, next) {
+
+  let num = req.params.num;
+
+  let sqlQuery = "SELECT * FROM FOODS LIMIT " + num;
+  // console.log(sqlQuery + num);
+  db.query(sqlQuery, (error, result) => {
     if (error) {
       res.status(500).send(error);
     }

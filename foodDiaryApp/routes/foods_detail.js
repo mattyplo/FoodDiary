@@ -4,25 +4,12 @@ var auth = require('../control/auth');
 
 
 // detail
-router.get('/:foodID', function(req, res, next) {
+router.get('/:foodID', auth, function(req, res, next) {
   res.render('foods_detail',{
-    title:'FOODS',
+    title:'Food Details',
 
   });
 
 });
-
-// function getFood(foodID){
-//   let sqlQuery = "SELECT * FROM FOODS WHERE FoodID = ?";
-//   // console.log(sqlQuery + foodID);
-//   db.query(sqlQuery, foodID, (error, result) => {
-//     if (error) {
-//       res.status(500).send(error);
-//     }
-
-//     // console.log(result);
-//     res.send(result);
-//   });
-// }
 
 module.exports = router;
