@@ -1,5 +1,6 @@
 var express = require('express');
-let fm = require('../control/food_Manipulation')
+let fm = require('../control/food_Manipulation');
+let db = require('../model/db.js');
 var router = express.Router();
 
 
@@ -73,6 +74,23 @@ router.get('/search/:food', function(req, res, next) {
       res.send(results);
     });
   }
+});
+
+router.get('/detail/:foodID', function(req, res, next) {
+
+  let foodID = req.params.foodID;
+
+  let sqlQuery = "SELECT * FROM FOODS WHERE FoodID = ?";
+  // console.log(sqlQuery + foodID);
+  db.query(sqlQuery, foodID, (error, result) => {
+    if (error) {
+      res.status(500).send(error);
+    }
+
+    // console.log(result);
+    res.send(result);
+  });
+
 });
 
 module.exports = router;

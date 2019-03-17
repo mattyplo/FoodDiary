@@ -1,11 +1,11 @@
 extend layout
 
 block append scripts
-  script(src="/js/foodItemManipulation.js")
+  script(src="/js/foodItemGen.js")
 
 block main
   main#food
-    #fooditem
+    #fooditem= fooditem
       
 
 block aside

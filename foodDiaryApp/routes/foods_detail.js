@@ -1,26 +1,28 @@
 var express = require('express');
-let fm = require('../control/food_Manipulation')
 var router = express.Router();
+var auth = require('../control/auth');
 
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-
-  res.render('foods_detail', {
+// detail
+router.get('/:foodID', function(req, res, next) {
+  res.render('foods_detail',{
     title:'FOODS',
+
   });
-
-  let food = req.query;
-  console.log('query is ' + food.foodName);
-  var isEmpty = food.foodName == undefined
-              ? true : false;
-  // console.log(isEmpty);
-  if (!isEmpty) {
-    fm.search(food);
-  }
-
 
 });
 
+// function getFood(foodID){
+//   let sqlQuery = "SELECT * FROM FOODS WHERE FoodID = ?";
+//   // console.log(sqlQuery + foodID);
+//   db.query(sqlQuery, foodID, (error, result) => {
+//     if (error) {
+//       res.status(500).send(error);
+//     }
+
+//     // console.log(result);
+//     res.send(result);
+//   });
+// }
 
 module.exports = router;
