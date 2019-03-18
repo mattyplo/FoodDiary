@@ -19,6 +19,7 @@ var delUserRouter = require('./routes/delete_user');
 //var authRooter = require('./routes/authorization');
 var loginRouter = require('./routes/login');
 var login_failRouter = require('./routes/login_fail');
+var profileRouter = require('./routes/profile');
 
 var app = express();
 
@@ -51,6 +52,7 @@ app.use('/delete_user', delUserRouter);
 //app.use('/auth', authRooter);
 app.use('/login', loginRouter);
 app.use('/login_fail', login_failRouter);
+app.use('/profile', profileRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
