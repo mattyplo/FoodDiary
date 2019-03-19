@@ -1,19 +1,21 @@
-doctype html
-html(lang='en')
-  head
-    title Delete User
-    link(rel='stylesheet', href='/stylesheets/indexstyle.css')
-  body
-    div(id='wrapper')
-      h1 Delete User
-      form(action='/delete_user' method='POST')
-        legend For security, your username and password must be provided.
-        fieldset
-          p
-            label username
-            input(type='username' name='username')
-          p
-            label password
-            input(type='password' name='password')
-          input(type='submit' value='DELETE ACCOUNT')
+extend layout
+
+
+block main
+  main#index
+   h2  Terminate account with us??!
+  
+block aside
+  aside#index
+   form(action='/delete_user' method='POST')
+    legend For security, your username and password must be provided.
+    fieldset
+     p
+      label username 
+      input(type='username' name='username')
+     p
+      label password
+      input(type='password' name='password')
+     input(type='submit' value='DELETE ACCOUNT')
+
 
