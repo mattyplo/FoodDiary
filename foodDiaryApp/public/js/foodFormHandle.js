@@ -31,6 +31,7 @@ $(function() {
 function btnToggle(btn, form){
   $(btn).click(function() {
     $(form).toggle();
+    $("#foodasidehead").css({"padding":"0px"});
   });
 }
 
