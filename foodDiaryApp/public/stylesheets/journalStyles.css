@@ -43,7 +43,7 @@ main li {
 
 .meal {
   display: block;
-  #background-color: azure;
+  background-color: azure;
 }
 
 .meal h3 {

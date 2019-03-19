@@ -7,9 +7,7 @@ var auth = require('../control/auth');
 const util = require('util');
 
 router.get('/', auth, function(req, res, next) {
-  res.render('journal', {
-    title:'Journal' 
-  });
+  res.render('journal', {title:'Journal' });
 });
 
 module.exports = router;

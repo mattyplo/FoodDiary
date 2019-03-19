@@ -1,4 +1,4 @@
-extends header
+extends layout
 
 block append scripts
   script(src="/js/displayMeals.js")
@@ -6,8 +6,7 @@ block append scripts
   script(src="/js/editMeal.js")
   link(rel='stylesheet', href='/stylesheets/journalStyles.css')
   
-block content
-  body
+block main
     main  
       h1= title
       
