@@ -20,7 +20,7 @@ var delUserRouter = require('./routes/delete_user');
 var loginRouter = require('./routes/login');
 var login_failRouter = require('./routes/login_fail');
 var profileRouter = require('./routes/profile');
-var registerFailRouter = require('./routes/registerFail');
+var registerFailRouter = require('./routes/registrationFail');
 
 var app = express();
 

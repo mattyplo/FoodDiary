@@ -16,7 +16,7 @@ router.post('/', function(req, res, next) {
 	    console.log(error);
 	} else {
         if (result.length === 0) {
-          var incorrectLoginMsg = encodeURIComponent('Your UserID or Password was invlaid');
+          var incorrectLoginMsg = encodeURIComponent('Your UserID or Password was invalid');
   res.redirect('/?valid=' + incorrectLoginMsg);
         }
 	    else if (!result[0].Password || String(result[0].Password).trim() == String(req.body.password).trim()) {
@@ -27,7 +27,7 @@ router.post('/', function(req, res, next) {
           console.log(req.session);
           res.redirect('/journal')
 	    } else {
-		  var incorrectLoginMsg = encodeURIComponent('Your UserID or Password was invlaid');
+		  var incorrectLoginMsg = encodeURIComponent('Your UserID or Password was invalid');
   res.redirect('/?valid=' + incorrectLoginMsg);
 	    }
 	    
