@@ -28,10 +28,15 @@ $(function() {
   })  
 });
 
+var istog = 1;
 function btnToggle(btn, form){
   $(btn).click(function() {
     $(form).toggle();
-    $("#foodasidehead").css({"padding":"0px"});
+    istog++;
+    if(istog%2 === 0)
+      $("#foodasidehead").css({"padding":"0px"});
+    else
+      $("#foodasidehead").css({"padding":"60px"});
   });
 }
 

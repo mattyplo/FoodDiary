@@ -2,6 +2,8 @@ extend layout
 
 block append scripts
   script(src="/js/foodItemGen.js")
+  script(src="/js/foodFormHandle.js")
+
 
 block main
   main#food
@@ -13,7 +15,7 @@ block aside
     ul#foodasidelist
       .form-popup#foodAddEditForm
         form(action='' method='GET')
-          legend Food Demo
+          legend Food Edit
             fieldset
               div
                 label Food Name
