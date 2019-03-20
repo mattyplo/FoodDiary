@@ -1,9 +1,7 @@
 
 extends layout
 
-block main
+block append main
   h1= title
-    p
-    button(class= "deleteUser") 
-     a( href='delete_user') delete user
-     
+  button delete user
+    a(href='delete_user') 

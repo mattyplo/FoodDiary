@@ -1,15 +1,15 @@
 extend layout
 
 block append scripts
-  script(src="/js/foodItemManipulation.js")
   script(src="/js/foodListGen.js")
+  script(src="/js/foodFormHandle.js")
 
   
 block main
   main#food
-    form#search(action='/api/v1/food/search' method='GET')
-        input(type='text' name='foodName' placeholder='What is for dinner?' size='100')
-        input#searchbtn(type='submit' value='Search')
+    
+    input#searchField(type='text' name='foodName' placeholder='What is for dinner?' size='100')
+    input#searchbtn(type='submit' value='Search')
 
     #foodlist
 
@@ -18,32 +18,34 @@ block main
 block aside
   aside#food
     ul#foodasidelist
-      div.form-popup#myForm
-        form(action='/api/v1/food/man' method='GET')
-          legend Food Demo
+      .form-popup#foodAddEditForm
+        form(action='' method='GET')
+          legend Food Edit
             fieldset
               div
                 label Food Name
-                input(name='foodName')
+                input#foodName
               div
                 label Grams Per Serving
-                input(name='gPerServing')
+                input#gPerServing
               div
                 label Calories Per Gram
-                input(name='cPerGram')
-              input(type='submit' class='btn' onclick="foodData()" value='Add/Edit')
-              input(type='button' id='closeFormButton' class='btn cancel' value='Cancel')
+                input#cPerGram
+              input.btn#addEditBtn(type='submit' value='Add/Edit')
+              button#closeAEForm Cancel
+      #foodasidehead
       li
-        button.foodItemManipulation#addItem Add Item
+        button.foodItemManipulation#addItem Add Food
       li
-        button.foodItemManipulation#editItem Edit Item
-      .form-popup#myDelForm
-        form(action='/api/v1/food/del' method='GET')
-          h1 Delete Food
-          label Food Name
-          input(type='text' name='foodName')
-          br
+        button.foodItemManipulation#editItem Edit Food
+      .form-popup#foodDelForm
+        form(action='' method='GET')
+          legend Delete Food
+            fieldset
+              div
+                label Food Name
+                input#delFoodName
           input.btn#delFood(type='submit' value='Delete Food')
-          input(type='button' id='closeFormButton' class='btn cancel' value='Cancel')
+          button#closeDelForm Cancel
       li
-        button.foodItemManipulation#deleteItem Delete Item
+        button.foodItemManipulation#deleteItem Delete Food

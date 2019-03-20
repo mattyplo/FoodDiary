@@ -1,0 +1,20 @@
+doctype html
+html(lang='en')
+  head
+    title Login failure. Please try again.
+    link(rel='stylesheet', href='/stylesheets/indexstyle.css')
+  body
+    h1 Login failure.
+    h3 Please try again.
+    form(action='/login' method='POST')
+      legend Login to Food Journal
+      fieldset
+        p
+          label username
+          input(type='username' name='username')
+        p
+          label password
+          input(type='password' name='username')
+        input(type='submit' value='login')
+        p Don't have an account?
+        a.small(href='/register') Register now

@@ -69,7 +69,7 @@ main{
    /* width:560px; 560px divided by 940px*/
     width:50%;
     margin:0 auto;
-    clear:both;
+    clear: left;;
     padding:15px;
     float: left;
 }
@@ -79,7 +79,7 @@ aside{
     width: 50%;
     background-color: white;
     text-align: center;
-    clear:both;
+    clear: right;
 }
 
 div#login {
@@ -123,7 +123,22 @@ aside#food{
     width: 25%;
     clear: right;
     padding: 5px;
+    padding-bottom: 25px;
     margin-top: 27px;
+}
+
+main#index{
+    font-size: 1.2em;
+}
+
+aside#index{
+    padding-top: 25px;
+    font-size: 1.2em;
+    padding-bottom: 25px;
+}
+
+aside#index legend{
+    font-weight: bold;
 }
 
 main#landing{
@@ -137,6 +152,7 @@ aside#landing{
 ul#foodasidelist{
     list-style-type: none;
 }
+
 
 .foodlist_item{
     height: 100px;
@@ -214,6 +230,10 @@ div#fooditem{
 
 ul#fooditem{
     line-height: 200%;
+}
+
+div#foodasidehead{
+    padding: 60px;
 }
 
 table {

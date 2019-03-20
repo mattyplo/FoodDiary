@@ -19,6 +19,11 @@ $(document).ready(function(){
       }
       var mealTypes = {};
       mealTypes[mealType];
+      //console.log(meals[mealDate][0]);
+      for (const meal in meals[mealDate]) {
+        console.log(Object.keys(meals[mealDate][meal])[0] === mealType);
+        console.log(Object.keys(meals[mealDate][meal]) + " " + mealType)
+      }
       
       if (mealFoods.length > 0) {
         $.each(mealFoods, (i, foodId) => {
@@ -31,6 +36,7 @@ $(document).ready(function(){
       }
 
     });
+    console.log(JSON.stringify(meals));
     outputMealData(meals);
    
   });
@@ -39,12 +45,17 @@ $(document).ready(function(){
 
     sortedMeals = sortMealsByDate(mealData);
     $.each(sortedMeals, (i, field) => {
-      var meal = "<div class='meal'><h3>" + i + "</h3><br />";
+      if (field.length === 0) {
+        // There is no food or mealsFoods associated with this entry so do not display.  
+        // by using just return, we skip the current iteration of the loop.  It is the equivlant of a continue; statement
+        return;
+      }
+      var meal = "<div class='meal'><h3>" + i + "</h3>";
       $.each(field, (j, item) => {
         $.each(item, (mealType, foods) => {
-          meal += "<h4>" + mealType + "</h4><br /><ul class='ulMeal'>";
+          meal += "<h4>" + mealType + "</h4><ul class='ulMeal'>";
           $.each(foods, (l, food) => {
-            meal += "<li class='liMeal'>" + food;
+            meal += "<li class='liMeal'>" + food + "</li>";
           })
           meal += "</ul>"
         })

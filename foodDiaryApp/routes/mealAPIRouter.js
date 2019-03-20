@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var db = require('../model/db_connection');
 
+// This router returns meal entires for a specific user
 router.get('/all', function(req, res, next) {
-  var query = "SELECT * FROM meals;";
+  var query = "SELECT * FROM meals WHERE UserID = " + req.session.userID;
   db(query, (error, result) => {
     if (error) {
       res.status(500).send(error);
@@ -88,7 +89,7 @@ router.get('/foodInfo/:mealID', function(req, res, next) {
 // returns the FoodIDs when given a mealID as a parameter
 router.get('/mealsFoodsID/:mealID', function(req, res, next) {
   var query = "SELECT FoodID FROM MealsFoods WHERE MealID =" + req.params.mealID;
-  //console.log(req.params.mealID);
+  // console.log(req.params.mealID);
   db(query, (error, result, fields) => {
     if (error) {
       res.status(500).send(error);
@@ -120,27 +121,53 @@ router.get('/foodName/:foodID', function(req, res, next) {
 })
 
 router.post('/newMeal', function(req, res, next) {
-  var query = "INSERT INTO MEALS (MealDate, MealTypeID, UserID) VALUES ('" + req.body.date + "', " + req.body.mealType + " , 1)";
   
-  
+  // Check if meal exists first
+  var query = "SELECT MealID FROM Meals WHERE MealDate = '" + req.body.date + "' AND MealTypeID = " + req.body.mealType + ";";
   db(query, (error, result) => {
     if (error) {
       res.status(500).send(error);
     }
-    //console.log(result);
-    addFoodFromMeal(result.insertId);
-    
+    if (result.length === 0) {
+      addMeal();
+    } else {
+      var mealID = result[0].MealID;
+      addFoodFromMeal(mealID);
+    }
   });
   
-  function addFoodFromMeal (mealID)  {
-    var foodQuery = "INSERT INTO Foods (FoodName, GramsPerServing, CaloriesPerGram) VALUES ('" + req.body.foodName + "', " + req.body.gramsPerServing + ", " + req.body.caloriesPerGram + ");";
-    db(foodQuery, (error, result) => {
+  function addMeal() {
+    var query = "INSERT INTO MEALS (MealDate, MealTypeID, UserID) VALUES ('" + req.body.date + "', " + req.body.mealType + ", " + req.session.userID + ")";
+  
+    db(query, (error, result) => {
       if (error) {
         res.status(500).send(error);
       }
-      var foodID = result.insertId;
-      addMealFoodFromMeal(mealID, foodID);
+      //console.log(result);
+      addFoodFromMeal(result.insertId);
     });
+  }
+  
+  function addFoodFromMeal (mealID)  {
+    var query = "SELECT FoodID FROM Foods WHERE FoodName ='" + req.body.foodName + "'";
+    db(query, (error, result, fields) => {
+      if (error) {
+        res.status(500).send(error);
+      }
+      if (result.length === 0) {
+        var foodQuery = "INSERT INTO Foods (FoodName, GramsPerServing, CaloriesPerGram) VALUES ('" + req.body.foodName + "', " + req.body.gramsPerServing + ", " + req.body.caloriesPerGram + ");";
+        db(foodQuery, (error, result) => {
+          if (error) {
+            res.status(500).send(error);
+          }
+          var foodID = result.insertId;
+          addMealFoodFromMeal(mealID, foodID);
+        }) 
+      } else {
+        var foodID = result[0].FoodID;
+        addMealFoodFromMeal(mealID, foodID);
+      }
+    })
   }
   
   function addMealFoodFromMeal (mealID, foodID) {

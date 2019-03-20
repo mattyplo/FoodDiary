@@ -16,11 +16,10 @@ router.post('/', function(req, res, next){
     
     db.query(query, queryParams, (error, result, fields)=> {
         if (error){
-            res.status(500).send(error);
+            console.log(error);
+            res.render('registrationFail', {title:'Registration Failed'});
         } else {
-        res.render('profile', {
-    title:'Profile' 
-  });
+            res.render('profile', {title:'Profile' });
         }
     });
         

@@ -1,0 +1,21 @@
+extend layout
+
+
+block main
+  main#index
+   h2  Terminate account with us??!
+  
+block aside
+  aside#index
+   form(action='/delete_user' method='POST')
+    legend For security, your username and password must be provided.
+    fieldset
+     p
+      label username 
+      input(type='username' name='username')
+     p
+      label password
+      input(type='password' name='password')
+     input(type='submit' value='DELETE ACCOUNT')
+
+

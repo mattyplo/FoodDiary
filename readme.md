@@ -21,11 +21,14 @@ To get started:
 
 You are all set up to develop the foodDiaryApp!
 
+5. Once you run the application, loging with the username: DRossman and password: password.  This user has a good representation of what the site looks like once a user has added a fair amount of journal entries.  
 
+When entering a date into a journal entry be sure to enter it with the following format YYYY-MM-DD.  
 
 The source code can be found in the foodDiaryApp directory.  It is separated into three files: Model, View and Controller.
 
 This project is based off of a prototype project previously built with a LAMP stack.  The prototype can be found here:  https://github.com/mattyplo/SlimPickins
 
 #MySQL connection setup
-See readme in model folder
+For more information see readme in model folder
+
