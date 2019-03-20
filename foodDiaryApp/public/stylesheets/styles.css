@@ -167,6 +167,15 @@ button#addItem,button#editItem, button#deleteItem{
     margin: 5px 0;
 }
 
+.deleteUser{
+    display:block;
+	padding: 15px 25px;
+	margin: auto;
+    text-align:center;
+    color: #622020;
+    
+}
+
 button#editItem{
     padding: 15px 25px;
 }
